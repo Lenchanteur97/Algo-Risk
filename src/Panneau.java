@@ -6,7 +6,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Panneau extends JPanel {
-	
+	private static final long serialVersionUID = 1L;
+
 	public void paintComponent(Graphics g) {
 		try {
 		      Image img = ImageIO.read(new File("Risk_game_map.png"));
