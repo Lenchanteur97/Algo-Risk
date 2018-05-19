@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 
 public class Region {
-	public final Territoire [] Territoires;
+	public ArrayList<Territoire> Territoires;
+	public final String nom;
 	
 }
