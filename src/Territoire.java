@@ -4,9 +4,15 @@ public class Territoire {
 	
 	// Attributs
 	public Joueur joueur;
+	public String nom;
 	public ArrayList<Armée> ListeTroupes;
-	public ArrayList<Territoire> TerritoireProche;
+	public ArrayList<Territoire> TerritoiresProches;
 	public final Region Region;
-	private final double [] abcisses;
-	private final double [] ordonnees;
+	
+	public Territoire(String nom, Region region) {
+		this.nom = nom;
+		Region = region;
+	}
+	
+	
 }
