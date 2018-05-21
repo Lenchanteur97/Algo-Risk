@@ -4,6 +4,7 @@ public class Territoire {
 	
 	// Attributs
 	public Joueur joueur;
+	public String nom;
 	public ArrayList<Armée> ListeTroupes;
 	public ArrayList<Territoire> TerritoireProche;
 	public final Region Region;
