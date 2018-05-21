@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class MainRisk {
 
 	public static void main(String[] args) {
-		// Création des ArrayList contenant les informations nécessaires au jeu
+		// CrÃ©ation des ArrayList contenant les informations nÃ©cessaires au jeu
 		ArrayList<Missions> ListeMissions= new ArrayList<Missions>();
 		ArrayList<Joueur> ListeJoueurs = new ArrayList<Joueur>();
 		ArrayList<Territoire> ListeTerritoires = new ArrayList<Territoire>();
@@ -15,17 +15,18 @@ public class MainRisk {
 		Interface fenetre = new Interface();
 		
 		
-		// Affichage d'une pop-up récupérant le nombre de joueurs qui va ensuite appeler une pop-up pour récupérer l'acronyme des joueurs
+		// Affichage d'une pop-up rÃ©cupÃ©rant le nombre de joueurs qui va ensuite appeler une pop-up pour rÃ©cupÃ©rer l'acronyme des joueurs
 		FenetreNombreJoueur ChoixJoueurs = new FenetreNombreJoueur(fenetre,"Choix du nombre de joueurs",true,ListeJoueurs);
 		
-		//Création des missions en fonction du nombre de joueurs dans la partie
+
+		//CrÃ©ation des missions en fonction du nombre de joueurs dans la partie
 		GenererMissions(ListeJoueurs.size(), ListeMissions);
-		//Attribution des missions à chaque joueur
+		//Attribution des missions Ã  chaque joueur
 		for (Joueur J : ListeJoueurs) {
 			J.AttribuerMissions(ListeMissions);
 		}
 		
-		//Création des regions et des territoires
+		//CrÃ©ation des regions et des territoires
 		GenererRegionsTerritoires(ListeRegions, ListeTerritoires);
 	}
 	
@@ -37,22 +38,22 @@ public class MainRisk {
 	public static void GenererMissions(int nbJoueurs,ArrayList<Missions> ListeMissions) {		
 		switch(nbJoueurs) {
 			case(2):
-				Missions M1_2 = new Missions("Conquérir tous les territoires");
-				Missions M2_2 = new Missions("Contrôler 3 régions et au moins 18 territoires");
-				Missions M3_2 = new Missions("Contrôler 30 territoires");
-				Missions M4_2 = new Missions("Contrôler la plus grosse région + 1 autre région");
+				Missions M1_2 = new Missions("ConquÃ©rir tous les territoires");
+				Missions M2_2 = new Missions("ContrÃ´ler 3 rÃ©gions et au moins 18 territoires");
+				Missions M3_2 = new Missions("ContrÃ´ler 30 territoires");
+				Missions M4_2 = new Missions("ContrÃ´ler la plus grosse rÃ©gion + 1 autre rÃ©gion");
 				ListeMissions.add(M1_2);
 				ListeMissions.add(M2_2);
 				ListeMissions.add(M3_2);
 				ListeMissions.add(M4_2);
 				break;
 			case(3):
-				Missions M1_3 = new Missions("Détruire le joueur X");
-				Missions M2_3 = new Missions("Conquérir tous les territoires");
-				Missions M3_3 = new Missions("Contrôler 3 régions et au moins 18 territoires");
-				Missions M4_3 = new Missions("Contrôler 18 territoires avec au moins 2 armées");
-				Missions M5_3 = new Missions("Contrôler 30 territoires");
-				Missions M6_3 = new Missions("Contrôler la plus grosse région + 1 autre région");
+				Missions M1_3 = new Missions("DÃ©truire le joueur X");
+				Missions M2_3 = new Missions("ConquÃ©rir tous les territoires");
+				Missions M3_3 = new Missions("ContrÃ´ler 3 rÃ©gions et au moins 18 territoires");
+				Missions M4_3 = new Missions("ContrÃ´ler 18 territoires avec au moins 2 armÃ©es");
+				Missions M5_3 = new Missions("ContrÃ´ler 30 territoires");
+				Missions M6_3 = new Missions("ContrÃ´ler la plus grosse rÃ©gion + 1 autre rÃ©gion");
 				ListeMissions.add(M1_3);
 				ListeMissions.add(M2_3);
 				ListeMissions.add(M3_3);
@@ -61,11 +62,11 @@ public class MainRisk {
 				ListeMissions.add(M6_3);
 				break;
 			case(4):
-				Missions M1_4 = new Missions("Détruire le joueur X");
-				Missions M2_4 = new Missions("Contrôler 3 régions et au moins 18 territoires ");
-				Missions M3_4 = new Missions("Contrôler 18 territoires avec au moins 2 armées");
-				Missions M4_4 = new Missions("Contrôler 24 territoires");
-				Missions M5_4 = new Missions("Contrôler la plus grosse région + 1 autre région");
+				Missions M1_4 = new Missions("DÃ©truire le joueur X");
+				Missions M2_4 = new Missions("ContrÃ´ler 3 rÃ©gions et au moins 18 territoires ");
+				Missions M3_4 = new Missions("ContrÃ´ler 18 territoires avec au moins 2 armÃ©es");
+				Missions M4_4 = new Missions("ContrÃ´ler 24 territoires");
+				Missions M5_4 = new Missions("ContrÃ´ler la plus grosse rÃ©gion + 1 autre rÃ©gion");
 				ListeMissions.add(M1_4);
 				ListeMissions.add(M2_4);
 				ListeMissions.add(M3_4);
@@ -73,11 +74,11 @@ public class MainRisk {
 				ListeMissions.add(M5_4);
 				break;
 			case(5):
-				Missions M1_5 = new Missions("Détruire le joueur X");
-				Missions M2_5 = new Missions("Contrôler 3 régions et au moins 18 territoires");
-				Missions M3_5 = new Missions("Contrôler 18 territoires avec au moins 2 armées");
-				Missions M4_5 = new Missions("Contrôler 24 territoires ");
-				Missions M5_5 = new Missions("Contrôler la plus grosse région + 1 autre région");
+				Missions M1_5 = new Missions("DÃ©truire le joueur X");
+				Missions M2_5 = new Missions("ContrÃ´ler 3 rÃ©gions et au moins 18 territoires");
+				Missions M3_5 = new Missions("ContrÃ´ler 18 territoires avec au moins 2 armÃ©es");
+				Missions M4_5 = new Missions("ContrÃ´ler 24 territoires ");
+				Missions M5_5 = new Missions("ContrÃ´ler la plus grosse rÃ©gion + 1 autre rÃ©gion");
 				ListeMissions.add(M1_5);
 				ListeMissions.add(M2_5);
 				ListeMissions.add(M3_5);
@@ -85,11 +86,11 @@ public class MainRisk {
 				ListeMissions.add(M5_5);
 				break;
 			case(6):
-				Missions M1_6 = new Missions("Détruire le joueur X");
-				Missions M2_6 = new Missions("Contrôler 3 régions et au moins 18 territoires");
-				Missions M3_6 = new Missions("Contrôler 18 territoires avec au moins 2 armées");
-				Missions M4_6 = new Missions("Contrôler 21 territoires");
-				Missions M5_6 = new Missions("Contrôler la plus grosse région + 1 autre région");
+				Missions M1_6 = new Missions("DÃ©truire le joueur X");
+				Missions M2_6 = new Missions("ContrÃ´ler 3 rÃ©gions et au moins 18 territoires");
+				Missions M3_6 = new Missions("ContrÃ´ler 18 territoires avec au moins 2 armÃ©es");
+				Missions M4_6 = new Missions("ContrÃ´ler 21 territoires");
+				Missions M5_6 = new Missions("ContrÃ´ler la plus grosse rÃ©gion + 1 autre rÃ©gion");
 				ListeMissions.add(M1_6);
 				ListeMissions.add(M2_6);
 				ListeMissions.add(M3_6);
@@ -116,9 +117,9 @@ public class MainRisk {
 									{"AF1", "AF2", "AF3", "AF4", "AF5", "AF6"}};
 		for(int i=0 ; i<Territoires.length; i++) {
 			for(int j=0; j<Territoires[i].length; j++) {
-				Territoire T = new Territoire(Territoires[i][j], ListeRegions.get(i)); // On instancie les territoires de chaque région
-				ListeTerritoires.add(T); // On ajoute ce territoire à l'arraylist contenant tous les territoires
-				ListeRegions.get(i).Territoires.add(T); // On ajoute ce territoire à l'arraylist Territoire de chaques régions
+				Territoire T = new Territoire(Territoires[i][j], ListeRegions.get(i)); // On instancie les territoires de chaque rÃ©gion
+				ListeTerritoires.add(T); // On ajoute ce territoire Ã  l'arraylist contenant tous les territoires
+				ListeRegions.get(i).Territoires.add(T); // On ajoute ce territoire Ã  l'arraylist Territoire de chaques rÃ©gions
 			}
 			
 		}

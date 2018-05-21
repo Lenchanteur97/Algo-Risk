@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 public class FenetreAcronymeJoueur extends JDialog{
 	private static final long serialVersionUID = 1L;
 	
-	public FenetreAcronymeJoueur(ActionListener actionListener, String title, boolean modal, int NombreJoueurs, ArrayList<Joueur> ListeJoueurs) {
+	public FenetreAcronymeJoueur(ActionListener actionListener, String title, boolean modal, int NombreJoueurs) {
 		//On appelle le construteur de JDialog correspondant
 	    super();
 	    // Création d'une boite de dialogue pour récupérer l'acronyme de chaque joueur
@@ -39,14 +39,17 @@ public class FenetreAcronymeJoueur extends JDialog{
 		  JPanel PanControl = new JPanel();
 		  JButton OK_BOUTON = new JButton("Valider");
 		  PanControl.add(OK_BOUTON);
+		  this.setVisible(true);
 		  
 		  OK_BOUTON.addActionListener(new ActionListener(){ // Action réalisée quand on clique sur le bouton valider
 		      
 				public void actionPerformed(ActionEvent arg0) {
+					  ArrayList<Joueur> ListeJoueurs = new ArrayList<Joueur>();
 			          for (JFormattedTextField Acronyme : ListeTextField) {
-			        	    Joueur J = new Joueur(Acronyme.getText());
+			        	    Joueur J = new Joueur(Acronyme.getText(),0,0);
 			        	    ListeJoueurs.add(J);
 			          }
+			          dispose();
 				}});
 		  
 	}
