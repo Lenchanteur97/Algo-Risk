@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Territoire {
 	
-	// Attributs
 	public Joueur joueur;
 	public String nom;
 	public ArrayList<Armée> ListeTroupes;
@@ -14,5 +13,8 @@ public class Territoire {
 		Region = region;
 	}
 	
+	public String toString() {
+		return " "+this.nom;
+	}
 	
 }
