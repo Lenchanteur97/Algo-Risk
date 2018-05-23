@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,13 +22,18 @@ public class FenetreNombreJoueur extends JDialog {
 	private static final long serialVersionUID = 1L;
 	public int nbJoueurs;
 	private JButton b1,b2,b3,b4,b5;
+	private boolean BoutonDejaActionner = false; // Je défini ici le layout de ma fenetre
+	private ArrayList<JFormattedTextField> ListeTextField = new ArrayList<JFormattedTextField>();
+	public ArrayList<String> ListeAcronymes = new ArrayList<String>();
+	private BorderLayout BL = new BorderLayout();
 
 	public FenetreNombreJoueur(JFrame parent, String title, boolean modal, ArrayList<Joueur> ListeJoueurs) {
 		//On appelle le construteur de JDialog correspondant
 	    super(parent, title, modal);
 	    
 	    // On définit les paramètres de notre boite de dialogue
-	    this.setSize(300,130);
+	    this.setSize(300,100);
+	    this.setLayout(BL);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);  
@@ -51,42 +57,62 @@ public class FenetreNombreJoueur extends JDialog {
 		PanNbJoueurs.add(b4);
 		PanNbJoueurs.add(b5);
 		
-		JLabel OptionsLabel = new JLabel("Choix du nombre de joueurs :");
-		// Création d'un panel avec un bouton valider
-		JPanel PanControl = new JPanel();
-		JButton OK_BOUTON = new JButton("Valider");
-		PanControl.add(OK_BOUTON);
-		OK_BOUTON.addActionListener(new BoutonListener());
-		PanControl.setVisible(true);
-		this.getContentPane().add(PanNbJoueurs, BorderLayout.NORTH); // Positionnement des deux panels dans la fenetre de dialogue
-		this.getContentPane().add(PanControl, BorderLayout.SOUTH);
+		this.add(PanNbJoueurs, BorderLayout.NORTH); // Positionnement du panel en haut de la fenetre
 		this.setVisible(true);
 	}
 	
+	public void ChoixAcronymes(int nbJoueurs) {
+		if (BoutonDejaActionner==true) { // Si l'utilisateur avait deja cliqué sur le nombre de joueurs, je retire la partie du milieu et du bas pour les re-afficher
+			this.remove(BL.getLayoutComponent(BorderLayout.CENTER)); 
+			this.remove(BL.getLayoutComponent(BorderLayout.SOUTH));
+		}
+		setSize(300,100+58*nbJoueurs);
+		JPanel PanAcronymes = new JPanel();
+		for (int i=0;i<nbJoueurs;i++) { // On cree des label et des zones de texte pour que les utilisateurs entrent leurs acronymes
+			JLabel LabelAcronyme = new JLabel("Acronyme Joueur n°"+(i+1)+" :");
+			LabelAcronyme.setSize(50,30);
+			JFormattedTextField SaisieAcronyme = new JFormattedTextField(new MasqueAcronyme());
+			SaisieAcronyme.setPreferredSize(new Dimension(200, 30));
+			ListeTextField.add(SaisieAcronyme);
+			PanAcronymes.add(LabelAcronyme);
+			PanAcronymes.add(SaisieAcronyme);
+		}
+		JPanel PanControl = new JPanel();
+		JButton OK_BOUTON = new JButton("Valider");
+		OK_BOUTON.addActionListener(new BoutonListener());
+		PanControl.add(OK_BOUTON);
+		
+		this.add(PanAcronymes, BorderLayout.CENTER);
+		this.add(PanControl, BorderLayout.SOUTH);
+		
+		BoutonDejaActionner = true;
+	}
+	
+	// Pour chaque bouton correspondant au nombre de joueurs, on récupère ce nombre et on affiche la seconde partie de la fenetre de dialogue qui récupère les acronymes des joueurs
 	public class Button1Action implements ActionListener{
 	    public void actionPerformed(ActionEvent e) {
 	        nbJoueurs=2;
-	        System.out.println(nbJoueurs);
+	        ChoixAcronymes(nbJoueurs);
 	  }}
 	public class Button2Action implements ActionListener{
 	    public void actionPerformed(ActionEvent e) {
 	        nbJoueurs=3;
-	        System.out.println(nbJoueurs);
+	        ChoixAcronymes(nbJoueurs);
 	  }}
 	public class Button3Action implements ActionListener{
 	    public void actionPerformed(ActionEvent e) {
 	        nbJoueurs=4;
-	        System.out.println(nbJoueurs);
+	        ChoixAcronymes(nbJoueurs);
 	  }}
 	public class Button4Action implements ActionListener{
 	    public void actionPerformed(ActionEvent e) {
 	        nbJoueurs=5;
-	        System.out.println(nbJoueurs);
+	        ChoixAcronymes(nbJoueurs);
 	  }}
 	public class Button5Action implements ActionListener{
 	    public void actionPerformed(ActionEvent e) {
 	        nbJoueurs=6;
-	        System.out.println(nbJoueurs);
+	        ChoixAcronymes(nbJoueurs);
 	  }}
 	
 	
