@@ -15,7 +15,7 @@ public class MainRisk {
 		Interface fenetre = new Interface();
 		
 		
-		// Affichage d'une pop-up récupérant le nombre de joueurs qui va ensuite appeler une pop-up pour récupérer l'acronyme des joueurs
+		// Affichage d'une pop-up récupérant le nombre de joueurs et leurs acronymes
 		FenetreNombreJoueur ChoixJoueurs = new FenetreNombreJoueur(fenetre,"Choix du nombre de joueurs",true,ListeJoueurs);
 		
 
