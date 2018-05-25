@@ -24,13 +24,13 @@ public class FenetreNombreJoueur extends JDialog {
 	private JButton b1,b2,b3,b4,b5;
 	private boolean BoutonDejaActionner = false; // Je défini ici le layout de ma fenetre
 	private ArrayList<JFormattedTextField> ListeTextField = new ArrayList<JFormattedTextField>();
-	public ArrayList<String> ListeAcronymes = new ArrayList<String>();
 	private BorderLayout BL = new BorderLayout();
 	private ArrayList<Joueur> ListeDesJoueurs;
+	
 	public FenetreNombreJoueur(JFrame parent, String title, boolean modal, ArrayList<Joueur> ListeJoueurs) {
 		//On appelle le construteur de JDialog correspondant
 	    super(parent, title, modal);
-	    ListeDesJoueurs = ListeJoueurs;
+	    ListeDesJoueurs = ListeJoueurs; // On modifiera les éléments de la ListeJoueurs par référence
 	    // On définit les paramètres de notre boite de dialogue
 	    this.setSize(300,100);
 	    this.setLayout(BL);
@@ -46,7 +46,7 @@ public class FenetreNombreJoueur extends JDialog {
 		JButton b3 = new JButton("4");
 		JButton b4 = new JButton("5");
 		JButton b5 = new JButton("6");
-		b1.addActionListener(new Button1Action()); // Ici on définit les actions de chaques boutons
+		b1.addActionListener(new Button1Action()); // Ici on affecte les actions de chaques boutons
 		b2.addActionListener(new Button2Action());
 		b3.addActionListener(new Button3Action());
 		b4.addActionListener(new Button4Action());
@@ -88,7 +88,7 @@ public class FenetreNombreJoueur extends JDialog {
 		BoutonDejaActionner = true;
 	}
 	
-	// Pour chaque bouton correspondant au nombre de joueurs, on récupère ce nombre et on affiche la seconde partie de la fenetre de dialogue qui récupère les acronymes des joueurs
+	// Pour chaque bouton correspondant aux nombres de joueurs, on récupère ce nombre et on affiche la seconde partie de la fenetre de dialogue qui récupère les acronymes des joueurs
 	public class Button1Action implements ActionListener{
 	    public void actionPerformed(ActionEvent e) {
 	        nbJoueurs=2;
@@ -117,14 +117,8 @@ public class FenetreNombreJoueur extends JDialog {
 	
 	// Action réalisée quand on clique sur le bouton Valider
 	public class BoutonListener implements ActionListener{
-	    public void actionPerformed(ActionEvent e) {
-	    	boolean sendData = true;
-	    	for (JFormattedTextField Jtext : ListeTextField) { // On vérifie que tous les acronymes des joueurs sont définis avec une longueur de 3
-	    		if (Jtext.getText().length()!=3) {
-	    			sendData=false;
-	    		}
-	    	}
-	    	if (sendData==true) {
+	    public void actionPerformed(ActionEvent e) {    	
+	    	if (AcronymesValides(ListeTextField)) {
 	    		for (JFormattedTextField Jtext : ListeTextField) {
 		    		ListeDesJoueurs.add(new Joueur(Jtext.getText())); // On créé des joueur avec comme acronymes ceux entrés dans les champs de texte
 		    	}
@@ -132,6 +126,21 @@ public class FenetreNombreJoueur extends JDialog {
 	            dispose();
 	    	}
             
+	    }
+	    public boolean AcronymesValides(ArrayList<JFormattedTextField> ListeTextField) { // Fonction qui renvoie true si les acronymes sont différents et font 3 caractères
+	    	ArrayList<String> ListeAcronymes = new ArrayList<String>();
+	    	for (JFormattedTextField Jtext : ListeTextField) {
+	    		if (Jtext.getText().length()!=3) { // On vérifie que tous les acronymes des joueurs sont définis avec une longueur de 3
+	    			return false;
+	    		}
+	    		for (int i=0;i<ListeAcronymes.size();i++) { // On vérifie que l'acronyme n'est pas deja prit par un autre joueur
+	    			if (ListeAcronymes.get(i)==Jtext.getText()) {
+	    				return false;
+	    			}
+	    		}
+	    		ListeAcronymes.add(Jtext.getText());
+	    	}
+	    	return true;
 	    }
 	  }
 }

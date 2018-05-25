@@ -10,7 +10,7 @@ public class Panneau extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		try {
-		      Image img = ImageIO.read(new File("Risk_game_map.png"));
+		      Image img = ImageIO.read(new File("Risk_Map2.png"));
 		      g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 		    } catch (IOException e) {
 		      e.printStackTrace();
