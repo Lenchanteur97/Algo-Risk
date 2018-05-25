@@ -26,11 +26,11 @@ public class FenetreNombreJoueur extends JDialog {
 	private ArrayList<JFormattedTextField> ListeTextField = new ArrayList<JFormattedTextField>();
 	public ArrayList<String> ListeAcronymes = new ArrayList<String>();
 	private BorderLayout BL = new BorderLayout();
-
+	private ArrayList<Joueur> ListeDesJoueurs;
 	public FenetreNombreJoueur(JFrame parent, String title, boolean modal, ArrayList<Joueur> ListeJoueurs) {
 		//On appelle le construteur de JDialog correspondant
 	    super(parent, title, modal);
-	    
+	    ListeDesJoueurs = ListeJoueurs;
 	    // On définit les paramètres de notre boite de dialogue
 	    this.setSize(300,100);
 	    this.setLayout(BL);
@@ -77,12 +77,12 @@ public class FenetreNombreJoueur extends JDialog {
 			PanAcronymes.add(LabelAcronyme);
 			PanAcronymes.add(SaisieAcronyme);
 		}
-		JPanel PanControl = new JPanel();
-		JButton OK_BOUTON = new JButton("Valider");
+		JPanel PanControl = new JPanel(); 
+		JButton OK_BOUTON = new JButton("Valider"); // Création d'un bouton valider
 		OK_BOUTON.addActionListener(new BoutonListener());
 		PanControl.add(OK_BOUTON);
 		
-		this.add(PanAcronymes, BorderLayout.CENTER);
+		this.add(PanAcronymes, BorderLayout.CENTER); // Ajout du panel contenant les zones de texte au centre
 		this.add(PanControl, BorderLayout.SOUTH);
 		
 		BoutonDejaActionner = true;
@@ -115,13 +115,23 @@ public class FenetreNombreJoueur extends JDialog {
 	        ChoixAcronymes(nbJoueurs);
 	  }}
 	
-	
+	// Action réalisée quand on clique sur le bouton Valider
 	public class BoutonListener implements ActionListener{
 	    public void actionPerformed(ActionEvent e) {
-    	  // FenetreAcronymeJoueur ChoixAcronymes = new FenetreAcronymeJoueur(this,"Choix des acronymes des joueurs",true,NombreJoueurs);
-          setVisible(false); // On retire la fenetre de dialogue seulement quand le nombre de joueurs est défini
-          dispose();
-          System.out.println(nbJoueurs);
+	    	boolean sendData = true;
+	    	for (JFormattedTextField Jtext : ListeTextField) { // On vérifie que tous les acronymes des joueurs sont définis avec une longueur de 3
+	    		if (Jtext.getText().length()!=3) {
+	    			sendData=false;
+	    		}
+	    	}
+	    	if (sendData==true) {
+	    		for (JFormattedTextField Jtext : ListeTextField) {
+		    		ListeDesJoueurs.add(new Joueur(Jtext.getText())); // On créé des joueur avec comme acronymes ceux entrés dans les champs de texte
+		    	}
+	    		setVisible(false); // On retire la fenetre de dialogue
+	            dispose();
+	    	}
+            
 	    }
 	  }
 }

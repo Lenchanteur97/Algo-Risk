@@ -19,17 +19,12 @@ public class MainRisk {
 		FenetreNombreJoueur ChoixJoueurs = new FenetreNombreJoueur(fenetre,"Choix du nombre de joueurs",true,ListeJoueurs);
 		
 		
-		ListeJoueurs.add(new Joueur("abc"));
-		ListeJoueurs.add(new Joueur("aze"));
-		ListeJoueurs.add(new Joueur("ghj"));
-		ListeJoueurs.add(new Joueur("iop"));
-		
 		//Création des missions en fonction du nombre de joueurs dans la partie
 		GenererMissions(ListeJoueurs.size(), ListeMissions);
 		//Attribution des missions à chaque joueur
 		for (Joueur J : ListeJoueurs) {
 			J.AttribuerMissions(ListeMissions);
-			System.out.println(J.Mission.toString());
+			System.out.println(J.acronyme+" "+J.Mission.toString());
 		}
 
 		
