@@ -140,6 +140,26 @@ public class MainRisk {
 				ListeRegions.get(i).Territoires.add(T); // On ajoute ce territoire à l'arraylist Territoire de chaques régions
 			}
 		}
+		
+		//Initialisation des territoires proches
+		
+		int [][] TerritoiresProchesTab = {
+				{1,3,23}, {0,3,2,4}, {5,13}, {0,1,4,6}, {1,3,4,5,6,7}, {2,4,7}, {3,4,7,8}, {4,5,6,8}, {6,7,9},
+				{8,10,11}, {9,11,12}, {9,10,12,36}, {10,11},
+				{2,14,19}, {13,15,16,19}, {13,16,17,36}, {14,15,17,18}, {15,16,18,31,36,37}, {16,17,19,20,24,31},{13,14,18},
+				{18,21,24,28}, {20,22,25,26,28}, {21,23,25}, {0,22,25,26,27} ,{18,21,28,31} ,{21,22,23,26}, {21,23,25,27,28}, {23,26}, {20,21,24,26,29,30,31}, {28,30,32}, {28,29,31}, {17,18,24,28,30,37,39}, 
+				{29,33,34}, {32,34,35}, {32,33,35}, {33,34},
+				{11,15,17,37,38,39}, {17,31,36,39}, {36,37,39,40}, {31,36,37,38,40,41}, {38,39,41}, {39,40}
+				};
+		
+		for(int i=0 ; i<ListeTerritoires.size() ; i++) {
+			for(int j=0; j<TerritoiresProchesTab[i].length; i++) {
+				ListeTerritoires.get(i).TerritoiresProches.add(ListeTerritoires.get(TerritoiresProchesTab[i][j]));
+			}
+			
+		}
+		
+		
 
 	}
 	
