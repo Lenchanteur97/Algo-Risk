@@ -11,6 +11,7 @@ public class Territoire {
 	public Territoire(String nom, Region region) {
 		this.nom = nom;
 		Region = region;
+		this.TerritoiresProches = new ArrayList<Territoire>();
 	}
 	
 	
@@ -19,8 +20,7 @@ public class Territoire {
 	//Fonction recuperer le nom d'un territoire 
 	public String toString() {
 		return " "+this.nom;
-	}
-	
+	}	
 	//Rempli la liste des territoires proches
 	
 }

@@ -36,7 +36,7 @@ public class MainRisk {
 		}
 		// Affichage des territoires en console pour vérifier que le code marche
 		for (Territoire ter : ListeTerritoires) {
-			System.out.print(ter.toString());
+			System.out.print(ter.TerritoiresProches.toString());
 		}
 
 		
@@ -153,7 +153,7 @@ public class MainRisk {
 				};
 		
 		for(int i=0 ; i<ListeTerritoires.size() ; i++) {
-			for(int j=0; j<TerritoiresProchesTab[i].length; i++) {
+			for(int j=0; j<TerritoiresProchesTab[i].length; j++) {
 				ListeTerritoires.get(i).TerritoiresProches.add(ListeTerritoires.get(TerritoiresProchesTab[i][j]));
 			}
 			
