@@ -13,8 +13,14 @@ public class Territoire {
 		Region = region;
 	}
 	
+	
+	//Methodes
+	
+	//Fonction recuperer le nom d'un territoire 
 	public String toString() {
 		return " "+this.nom;
 	}
+	
+	//Rempli la liste des territoires proches
 	
 }
