@@ -15,8 +15,10 @@ public class MainRisk {
 		Interface fenetre = new Interface();
 		
 		
-		// Affichage d'une pop-up rÃ©cupÃ©rant le nombre de joueurs et leurs acronymes
+		// Affichage d'une pop-up rÃ©cupÃ©rant le nombre de joueurs et leurs acronymes et créé les joueurs
 		FenetreNombreJoueur ChoixJoueurs = new FenetreNombreJoueur(fenetre,"Choix du nombre de joueurs",true,ListeJoueurs);
+		// Ajout d'une légende sur la carte
+		fenetre.AjouterLegendeJoueurs(ListeJoueurs);
 		
 		
 		//CrÃ©ation des missions en fonction du nombre de joueurs dans la partie
