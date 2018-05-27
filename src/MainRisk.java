@@ -44,7 +44,14 @@ public class MainRisk {
 		//Attribution des territoires à chaque joueur
 		ArrayList<Territoire> ListeTerritoiresRestants = new ArrayList<Territoire>();//On créé une liste avec tous les territoires pour pouvoir la modifier en gardant ListeTerritoires intacte
 		ListeTerritoiresRestants.addAll(ListeTerritoires);
-		AttribuerrTerritoires(ListeJoueurs, ListeTerritoires, ListeTerritoiresRestants);
+		AttribuerTerritoires(ListeJoueurs, ListeTerritoires, ListeTerritoiresRestants);
+		
+		// Verification sur les territoires de chaque joueurs
+		for(Joueur J: ListeJoueurs) {
+			System.out.println(" ");
+			System.out.print(J.acronyme);
+			System.out.print(J.TerritoiresJoueur.toString());
+		}
 		
 	}
 	
@@ -118,6 +125,7 @@ public class MainRisk {
 		}
 	}
 	
+	//Initioalisation des regions et des territoires
 	//Initialisation des regions et des territoires 
 	public static void GenererRegionsTerritoires(ArrayList<Region> ListeRegions, ArrayList<Territoire> ListeTerritoires) {
 		//Initialisation des regions
@@ -162,29 +170,28 @@ public class MainRisk {
 
 	}
 	
-	public static void AttribuerrTerritoires(ArrayList<Joueur> ListeJoueur,ArrayList<Territoire> ListeTerritoires, ArrayList<Territoire> ListeTerritoiresRestants) {
+	//Attribution des territoires au joueurs en fonction de leur nombre
+	public static void AttribuerTerritoires(ArrayList<Joueur> ListeJoueur,ArrayList<Territoire> ListeTerritoires, ArrayList<Territoire> ListeTerritoiresRestants) {
+		
 		int nbJoueurs = ListeJoueur.size();
 		int reste = ListeTerritoires.size()%nbJoueurs;
 		
-		while(ListeTerritoiresRestants.size()!=reste) {
-			for(int i=0; i<nbJoueurs; i+=1) {
+		while(ListeTerritoiresRestants.size()!=reste) {//Boucle qui s'execute tant que la liste TerritoiresRestants n'est pas égale au reste du nombre de territoires par le nombre de joueurs
+			for(int i=0; i<nbJoueurs; i+=1) {//Boucle qui a chaque passage attribu au joueur i un territoire aleatoire
 				int y= GenererNbAleatoire(0, ListeTerritoiresRestants.size()-1);
 				ListeJoueur.get(i).TerritoiresJoueur.add(ListeTerritoiresRestants.get(y));
 				ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(y));
 				}
 			}
-		if(reste==2) {
+		if(reste==2) {//Si le reste de la division n'est pas nul alors il reste deux territoires à attribuer
 			ListeJoueur.get(ListeJoueur.size()-1).TerritoiresJoueur.add(ListeTerritoiresRestants.get(0));
 			ListeJoueur.get(ListeJoueur.size()-2).TerritoiresJoueur.add(ListeTerritoiresRestants.get(1));
 			ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(1));
 			ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(0));
 		}
-		for(Joueur J: ListeJoueur) {
-			System.out.println(" ");
-			System.out.print(J.acronyme);
-			System.out.print(J.TerritoiresJoueur.toString());
-		}
 	}
+
+	//Fonction qui genere un nobmre aleatoire
 	public static int GenererNbAleatoire(int a, int b) {
 		int nombreAleatoire = a + (int)(Math.random() * ((b - a) + 1));
 		return nombreAleatoire;
