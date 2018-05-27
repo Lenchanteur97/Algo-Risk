@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class Joueur {
@@ -5,13 +6,13 @@ public class Joueur {
 	public int nbRegions;
 	public Missions Mission;
 	public ArrayList<Territoire> TerritoiresJoueur;
+	public Color couleur;
 	
-	public Joueur(String acronyme) {
+	public Joueur(String acronyme, Color couleur) {
 		this.acronyme = acronyme;
+		this.couleur = couleur;
 		this.TerritoiresJoueur = new ArrayList<Territoire>();
 	}
-	
-	//Methode
 	
 	//Attribution une mission à chaque joueur
 	public void AttribuerMissions(ArrayList<Missions> ListeMissions) {

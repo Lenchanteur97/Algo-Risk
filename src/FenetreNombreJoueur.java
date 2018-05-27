@@ -1,22 +1,16 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import jdk.nashorn.internal.runtime.options.Options;
 
 public class FenetreNombreJoueur extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -117,30 +111,27 @@ public class FenetreNombreJoueur extends JDialog {
 	
 	// Action réalisée quand on clique sur le bouton Valider
 	public class BoutonListener implements ActionListener{
-	    public void actionPerformed(ActionEvent e) {    	
+	    public void actionPerformed(ActionEvent e) { 
+	    	Color[] ListeCouleurs = {Color.red, Color.blue, Color.green, Color.yellow, Color.cyan, Color.magenta}; // Liste des couleurs pour les joueurs
+	    	int i=0;
 	    	if (AcronymesValides(ListeTextField)) {
 	    		for (JFormattedTextField Jtext : ListeTextField) {
-		    		ListeDesJoueurs.add(new Joueur(Jtext.getText())); // On créé des joueur avec comme acronymes ceux entrés dans les champs de texte
+		    		ListeDesJoueurs.add(new Joueur(Jtext.getText(),ListeCouleurs[i])); // On créé des joueur avec comme acronymes ceux entrés dans les champs de texte
+		    		i++;
 		    	}
 	    		setVisible(false); // On retire la fenetre de dialogue
 	            dispose();
 	    	}
             
 	    }
-	    public boolean AcronymesValides(ArrayList<JFormattedTextField> ListeTextField) { // Fonction qui renvoie true si les acronymes sont différents et font 3 caractères
-	    	ArrayList<String> ListeAcronymes = new ArrayList<String>();
+	    public boolean AcronymesValides(ArrayList<JFormattedTextField> ListeTextField) { // Fonction qui renvoie true si les acronymes font 3 caractères
+	    	boolean sendData = true;
 	    	for (JFormattedTextField Jtext : ListeTextField) {
 	    		if (Jtext.getText().length()!=3) { // On vérifie que tous les acronymes des joueurs sont définis avec une longueur de 3
-	    			return false;
+	    			sendData=false;
 	    		}
-	    		for (int i=0;i<ListeAcronymes.size();i++) { // On vérifie que l'acronyme n'est pas deja prit par un autre joueur
-	    			if (ListeAcronymes.get(i)==Jtext.getText()) {
-	    				return false;
-	    			}
-	    		}
-	    		ListeAcronymes.add(Jtext.getText());
 	    	}
-	    	return true;
+	    	return sendData;
 	    }
 	  }
 }
