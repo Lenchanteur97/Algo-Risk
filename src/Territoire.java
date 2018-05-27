@@ -21,6 +21,6 @@ public class Territoire {
 	public String toString() {
 		return " "+this.nom;
 	}	
-	//Rempli la liste des territoires proches
+
 	
 }

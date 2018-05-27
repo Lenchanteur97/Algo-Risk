@@ -44,9 +44,10 @@ public class MainRisk {
 		
 		
 		//Attribution des territoires � chaque joueur
-		for (Joueur J : ListeJoueurs) {
-			J.AttribuerTerritoires(ListeJoueurs, ListeTerritoires);
-		}
+		ArrayList<Territoire> ListeTerritoiresRestants = new ArrayList<Territoire>();//On cr�� une liste avec tous les territoires pour pouvoir la modifier en gardant ListeTerritoires intacte
+		ListeTerritoiresRestants.addAll(ListeTerritoires);
+		AttribuerrTerritoires(ListeJoueurs, ListeTerritoires, ListeTerritoiresRestants);
+		
 	}
 	
 	
@@ -57,22 +58,22 @@ public class MainRisk {
 	public static void GenererMissions(int nbJoueurs,ArrayList<Missions> ListeMissions) {		
 		switch(nbJoueurs) {
 			case(2):
-				Missions M1_2 = new Missions("Conquérir tous les territoires");
-				Missions M2_2 = new Missions("Contrôler 3 régions et au moins 18 territoires");
-				Missions M3_2 = new Missions("Contrôler 30 territoires");
-				Missions M4_2 = new Missions("Contrôler la plus grosse région + 1 autre région");
+				Missions M1_2 = new Missions("Conquerir tous les territoires");
+				Missions M2_2 = new Missions("Controler 3 regions et au moins 18 territoires");
+				Missions M3_2 = new Missions("Controler 30 territoires");
+				Missions M4_2 = new Missions("Controler la plus grosse region + 1 autre region");
 				ListeMissions.add(M1_2);
 				ListeMissions.add(M2_2);
 				ListeMissions.add(M3_2);
 				ListeMissions.add(M4_2);
 				break;
 			case(3):
-				Missions M1_3 = new Missions("Détruire le joueur X");
-				Missions M2_3 = new Missions("Conquérir tous les territoires");
-				Missions M3_3 = new Missions("Contrôler 3 régions et au moins 18 territoires");
-				Missions M4_3 = new Missions("Contrôler 18 territoires avec au moins 2 armées");
-				Missions M5_3 = new Missions("Contrôler 30 territoires");
-				Missions M6_3 = new Missions("Contrôler la plus grosse région + 1 autre région");
+				Missions M1_3 = new Missions("Detruire le joueur X");
+				Missions M2_3 = new Missions("Conquerir tous les territoires");
+				Missions M3_3 = new Missions("Controler 3 regions et au moins 18 territoires");
+				Missions M4_3 = new Missions("Controler 18 territoires avec au moins 2 armees");
+				Missions M5_3 = new Missions("Controler 30 territoires");
+				Missions M6_3 = new Missions("Controler la plus grosse region + 1 autre region");
 				ListeMissions.add(M1_3);
 				ListeMissions.add(M2_3);
 				ListeMissions.add(M3_3);
@@ -81,11 +82,11 @@ public class MainRisk {
 				ListeMissions.add(M6_3);
 				break;
 			case(4):
-				Missions M1_4 = new Missions("Détruire le joueur X");
-				Missions M2_4 = new Missions("Contrôler 3 régions et au moins 18 territoires ");
-				Missions M3_4 = new Missions("Contrôler 18 territoires avec au moins 2 armées");
-				Missions M4_4 = new Missions("Contrôler 24 territoires");
-				Missions M5_4 = new Missions("Contrôler la plus grosse région + 1 autre région");
+				Missions M1_4 = new Missions("Detruire le joueur X");
+				Missions M2_4 = new Missions("Controler 3 regions et au moins 18 territoires ");
+				Missions M3_4 = new Missions("Controler 18 territoires avec au moins 2 armees");
+				Missions M4_4 = new Missions("Controler 24 territoires");
+				Missions M5_4 = new Missions("Controler la plus grosse région + 1 autre region");
 				ListeMissions.add(M1_4);
 				ListeMissions.add(M2_4);
 				ListeMissions.add(M3_4);
@@ -93,11 +94,11 @@ public class MainRisk {
 				ListeMissions.add(M5_4);
 				break;
 			case(5):
-				Missions M1_5 = new Missions("Détruire le joueur X");
-				Missions M2_5 = new Missions("Contrôler 3 régions et au moins 18 territoires");
-				Missions M3_5 = new Missions("Contrôler 18 territoires avec au moins 2 armées");
-				Missions M4_5 = new Missions("Contrôler 24 territoires ");
-				Missions M5_5 = new Missions("Contrôler la plus grosse région + 1 autre région");
+				Missions M1_5 = new Missions("Detruire le joueur X");
+				Missions M2_5 = new Missions("Controler 3 regions et au moins 18 territoires");
+				Missions M3_5 = new Missions("Controler 18 territoires avec au moins 2 armees");
+				Missions M4_5 = new Missions("Controler 24 territoires ");
+				Missions M5_5 = new Missions("Controler la plus grosse region + 1 autre region");
 				ListeMissions.add(M1_5);
 				ListeMissions.add(M2_5);
 				ListeMissions.add(M3_5);
@@ -105,11 +106,11 @@ public class MainRisk {
 				ListeMissions.add(M5_5);
 				break;
 			case(6):
-				Missions M1_6 = new Missions("Détruire le joueur X");
-				Missions M2_6 = new Missions("Contrôler 3 régions et au moins 18 territoires");
-				Missions M3_6 = new Missions("Contrôler 18 territoires avec au moins 2 armées");
-				Missions M4_6 = new Missions("Contrôler 21 territoires");
-				Missions M5_6 = new Missions("Contrôler la plus grosse région + 1 autre région");
+				Missions M1_6 = new Missions("Detruire le joueur X");
+				Missions M2_6 = new Missions("Controler 3 regions et au moins 18 territoires");
+				Missions M3_6 = new Missions("Controler 18 territoires avec au moins 2 armees");
+				Missions M4_6 = new Missions("Controler 21 territoires");
+				Missions M5_6 = new Missions("Controler la plus grosse region + 1 autre region");
 				ListeMissions.add(M1_6);
 				ListeMissions.add(M2_6);
 				ListeMissions.add(M3_6);
@@ -142,9 +143,7 @@ public class MainRisk {
 				ListeRegions.get(i).Territoires.add(T); // On ajoute ce territoire à l'arraylist Territoire de chaques régions
 			}
 		}
-		
 		//Initialisation des territoires proches
-		
 		int [][] TerritoiresProchesTab = {
 				{1,3,23}, {0,3,2,4}, {5,13}, {0,1,4,6}, {1,3,4,5,6,7}, {2,4,7}, {3,4,7,8}, {4,5,6,8}, {6,7,9},
 				{8,10,11}, {9,11,12}, {9,10,12,36}, {10,11},
@@ -156,7 +155,7 @@ public class MainRisk {
 		
 		for(int i=0 ; i<ListeTerritoires.size() ; i++) {
 			for(int j=0; j<TerritoiresProchesTab[i].length; j++) {
-				ListeTerritoires.get(i).TerritoiresProches.add(ListeTerritoires.get(TerritoiresProchesTab[i][j]));
+				ListeTerritoires.get(i).TerritoiresProches.add(ListeTerritoires.get(TerritoiresProchesTab[i][j]));//A chaque territoire on lui attribu plusieurs territoires proches dans son array liste territoires proches
 			}
 			
 		}
@@ -165,5 +164,31 @@ public class MainRisk {
 
 	}
 	
-	
+	public static void AttribuerrTerritoires(ArrayList<Joueur> ListeJoueur,ArrayList<Territoire> ListeTerritoires, ArrayList<Territoire> ListeTerritoiresRestants) {
+		int nbJoueurs = ListeJoueur.size();
+		int reste = ListeTerritoires.size()%nbJoueurs;
+		
+		while(ListeTerritoiresRestants.size()!=reste) {
+			for(int i=0; i<nbJoueurs; i+=1) {
+				int y= GenererNbAleatoire(0, ListeTerritoiresRestants.size()-1);
+				ListeJoueur.get(i).TerritoiresJoueur.add(ListeTerritoiresRestants.get(y));
+				ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(y));
+				}
+			}
+		if(reste==2) {
+			ListeJoueur.get(ListeJoueur.size()-1).TerritoiresJoueur.add(ListeTerritoiresRestants.get(0));
+			ListeJoueur.get(ListeJoueur.size()-2).TerritoiresJoueur.add(ListeTerritoiresRestants.get(1));
+			ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(1));
+			ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(0));
+		}
+		for(Joueur J: ListeJoueur) {
+			System.out.println(" ");
+			System.out.print(J.acronyme);
+			System.out.print(J.TerritoiresJoueur.toString());
+		}
+	}
+	public static int GenererNbAleatoire(int a, int b) {
+		int nombreAleatoire = a + (int)(Math.random() * ((b - a) + 1));
+		return nombreAleatoire;
+	}
 }
