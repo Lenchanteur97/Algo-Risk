@@ -55,6 +55,8 @@ public class MainRisk {
 			System.out.print(J.TerritoiresJoueur.toString());
 		}
 		
+		//Placement des armees sur les territoires par les joueurs
+		
 	}
 	
 	
@@ -193,6 +195,14 @@ public class MainRisk {
 		}
 	}
 
+	//Placement des armées
+	public static void PlacerArmee(ArrayList<Joueur> ListeJoueur) {
+		int nbJoueurs = ListeJoueur.size();
+		
+		
+	}
+	
+	
 	//Fonction qui genere un nobmre aleatoire
 	public static int GenererNbAleatoire(int a, int b) {
 		int nombreAleatoire = a + (int)(Math.random() * ((b - a) + 1));

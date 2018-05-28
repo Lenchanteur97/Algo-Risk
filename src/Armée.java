@@ -10,8 +10,8 @@ public class Armée {
 	
 	public Armée(String type) {
 
-		Type = type;
-		
+		this.Type = type;
+
 		if(type == "Soldat") {
 			this.Cout = 1;
 			this.PuissanceMin = 1;
