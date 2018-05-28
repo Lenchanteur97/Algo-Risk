@@ -17,7 +17,7 @@ public class MainRisk {
 		
 		// Affichage d'une pop-up rÃ©cupÃ©rant le nombre de joueurs et leurs acronymes et créé les joueurs
 		FenetreNombreJoueur ChoixJoueurs = new FenetreNombreJoueur(fenetre,"Choix du nombre de joueurs",true,ListeJoueurs);
-		// Ajout d'une légende sur la carte
+		// Ajout d'une légende avec les joueurs sur la carte
 		fenetre.AjouterLegendeJoueurs(ListeJoueurs);
 		
 		
@@ -39,6 +39,7 @@ public class MainRisk {
 		// Affichage des territoires en console pour vérifier que le code marche
 		for (Territoire ter : ListeTerritoires) {
 			System.out.print(ter.TerritoiresProches.toString());
+			System.out.println(ter.PosXBouton+","+ter.PosYBouton);
 		}
 
 		
@@ -160,11 +161,21 @@ public class MainRisk {
 				{29,33,34}, {32,34,35}, {32,33,35}, {33,34},
 				{11,15,17,37,38,39}, {17,31,36,39}, {36,37,39,40}, {31,36,37,38,40,41}, {38,39,41}, {39,40}
 				};
+		int [][] PositionBouton = {
+				{141,293},{331,302},{702,187},{319,383},{448,391},{551,387},{338,474},{457,505},{400,598},
+				{548,680},{549,793},{647,766},{577,907},
+				{807,296},{899,391},{917,441},{974,407},{1015,453},{1096,370},{995,287},
+				{1240,337},{1382,279},{1523,286},{1678,290},{1239,445},{1466,373},{1496,445},{1605,506},{1403,514},{1419,623},{1295,575},{1126,527},
+				{1478,716},{1623,748},{1540,859},{1645,875},
+				{904,607},{1022,564},{1016,721},{1087,666},{1029,837},{1141,821}
+				};
 		
 		for(int i=0 ; i<ListeTerritoires.size() ; i++) {
 			for(int j=0; j<TerritoiresProchesTab[i].length; j++) {
 				ListeTerritoires.get(i).TerritoiresProches.add(ListeTerritoires.get(TerritoiresProchesTab[i][j]));//A chaque territoire on lui attribu plusieurs territoires proches dans son array liste territoires proches
 			}
+			ListeTerritoires.get(i).PosXBouton=PositionBouton[i][0];
+			ListeTerritoires.get(i).PosYBouton=PositionBouton[i][1];
 			
 		}
 		

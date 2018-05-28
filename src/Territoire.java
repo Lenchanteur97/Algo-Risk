@@ -7,6 +7,8 @@ public class Territoire {
 	public ArrayList<Armée> ListeTroupes;
 	public ArrayList<Territoire> TerritoiresProches;
 	public final Region Region;
+	public int PosXBouton;
+	public int PosYBouton;
 	
 	public Territoire(String nom, Region region) {
 		this.nom = nom;
@@ -14,8 +16,7 @@ public class Territoire {
 		this.TerritoiresProches = new ArrayList<Territoire>();
 	}
 	
-	
-	//Methodes
+
 	
 	//Fonction recuperer le nom d'un territoire 
 	public String toString() {

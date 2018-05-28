@@ -7,10 +7,12 @@ public class Joueur {
 	public Missions Mission;
 	public ArrayList<Territoire> TerritoiresJoueur;
 	public Color couleur;
+	public boolean Elimine;
 	
 	public Joueur(String acronyme, Color couleur) {
 		this.acronyme = acronyme;
 		this.couleur = couleur;
+		this.Elimine=false;
 		this.TerritoiresJoueur = new ArrayList<Territoire>();
 	}
 	
@@ -18,7 +20,7 @@ public class Joueur {
 	public void AttribuerMissions(ArrayList<Missions> ListeMissions) {
 			int a = GenererNbAleatoire(0, ListeMissions.size()-1);
 			this.Mission = ListeMissions.get(a);
-		}
+	}
 	
 	//Fonction generer nb aléat
 	public static int GenererNbAleatoire(int a, int b) {
