@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
@@ -16,7 +17,7 @@ public class FenetreNombreJoueur extends JDialog {
 	private static final long serialVersionUID = 1L;
 	public int nbJoueurs;
 	private JButton b1,b2,b3,b4,b5;
-	private boolean BoutonDejaActionner = false; // Je défini ici le layout de ma fenetre
+	private boolean BoutonDejaActionner = false;
 	private ArrayList<JFormattedTextField> ListeTextField = new ArrayList<JFormattedTextField>();
 	private BorderLayout BL = new BorderLayout();
 	private ArrayList<Joueur> ListeDesJoueurs;

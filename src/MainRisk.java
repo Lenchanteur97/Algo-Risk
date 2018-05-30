@@ -1,4 +1,5 @@
 
+import java.awt.Container;
 import java.util.ArrayList;
 
 public class MainRisk {
@@ -9,55 +10,59 @@ public class MainRisk {
 		ArrayList<Joueur> ListeJoueurs = new ArrayList<Joueur>();
 		ArrayList<Territoire> ListeTerritoires = new ArrayList<Territoire>();
 		ArrayList<Region> ListeRegions = new ArrayList<Region>();
+		ArrayList<BoutonRond> ListeBoutonsTerritoires = new ArrayList<BoutonRond>();
 		
 		
-		// Initialisation de la carte
+		// Initialisation de la fentre et de la carte du monde
 		Interface fenetre = new Interface();
-		
 		
 		// Affichage d'une pop-up rÃ©cupÃ©rant le nombre de joueurs et leurs acronymes et créé les joueurs
 		FenetreNombreJoueur ChoixJoueurs = new FenetreNombreJoueur(fenetre,"Choix du nombre de joueurs",true,ListeJoueurs);
-		// Ajout d'une légende avec les joueurs sur la carte
-		fenetre.AjouterLegendeJoueurs(ListeJoueurs);
-		
 		
 		//CrÃ©ation des missions en fonction du nombre de joueurs dans la partie
-		GenererMissions(ListeJoueurs.size(), ListeMissions);
-		//Attribution des missions Ã  chaque joueur
-		for (Joueur J : ListeJoueurs) {
-			J.AttribuerMissions(ListeMissions);
-			System.out.println(J.acronyme+" "+J.Mission.toString());
-		}
+				GenererMissions(ListeJoueurs.size(), ListeMissions);
+				//Attribution des missions Ã  chaque joueur
+				for (Joueur J : ListeJoueurs) {
+					J.AttribuerMissions(ListeMissions);
+					System.out.println(J.acronyme+" "+J.Mission.toString());
+				}
 
-		
-		//CrÃ©ation des regions et des territoires
-		GenererRegionsTerritoires(ListeRegions, ListeTerritoires);
-		// Affichage des regions en console pour vérifier que le code marche
-		for (Region reg : ListeRegions) {
-			System.out.print(reg.toString());
-		}
-		// Affichage des territoires en console pour vérifier que le code marche
-		for (Territoire ter : ListeTerritoires) {
-			System.out.print(ter.TerritoiresProches.toString());
-			System.out.println(ter.PosXBouton+","+ter.PosYBouton);
-		}
+				
+				//CrÃ©ation des regions et des territoires
+				GenererRegionsTerritoires(ListeRegions, ListeTerritoires);
+				// Affichage des regions en console pour vérifier que le code marche
+				for (Region reg : ListeRegions) {
+					System.out.print(reg.toString());
+				}
+				// Affichage des territoires en console pour vérifier que le code marche
+				for (Territoire ter : ListeTerritoires) {
+					System.out.print(ter.TerritoiresProches.toString());
+					System.out.println(ter.PosXBouton+","+ter.PosYBouton);
+				}
 
-		
-		
-		//Attribution des territoires à chaque joueur
-		ArrayList<Territoire> ListeTerritoiresRestants = new ArrayList<Territoire>();//On créé une liste avec tous les territoires pour pouvoir la modifier en gardant ListeTerritoires intacte
-		ListeTerritoiresRestants.addAll(ListeTerritoires);
-		AttribuerTerritoires(ListeJoueurs, ListeTerritoires, ListeTerritoiresRestants);
-		
-		// Verification sur les territoires de chaque joueurs
-		for(Joueur J: ListeJoueurs) {
-			System.out.println(" ");
-			System.out.print(J.acronyme);
-			System.out.print(J.TerritoiresJoueur.toString());
-		}
+				
+				
+				//Attribution des territoires à chaque joueur
+				ArrayList<Territoire> ListeTerritoiresRestants = new ArrayList<Territoire>();//On créé une liste avec tous les territoires pour pouvoir la modifier en gardant ListeTerritoires intacte
+				ListeTerritoiresRestants.addAll(ListeTerritoires);
+				AttribuerTerritoires(ListeJoueurs, ListeTerritoires, ListeTerritoiresRestants);
+				
+				// Verification sur les territoires de chaque joueurs
+				for(Joueur J: ListeJoueurs) {
+					System.out.println(" ");
+					System.out.print(J.acronyme);
+					System.out.print(J.TerritoiresJoueur.toString());
+					System.out.println(J.CouleurToString());
+				}
+				
+				
+		// Ajout de la carte et de la légende des joueurs dans la fenetre de jeu
+		Panneau Panneau = new Panneau(ListeJoueurs, ListeTerritoires);
+		Container contentpane = fenetre.getContentPane();
+		contentpane.add(Panneau);
+		ListeBoutonsTerritoires=Panneau.getListeBoutons();
 		
 		//Placement des armees sur les territoires par les joueurs
-		
 	}
 	
 	
@@ -212,11 +217,11 @@ public class MainRisk {
 		
 		
 	}
-	
-	
-	//Fonction qui genere un nobmre aleatoire
+		
+	//Fonction qui genere un nombre aleatoire
 	public static int GenererNbAleatoire(int a, int b) {
 		int nombreAleatoire = a + (int)(Math.random() * ((b - a) + 1));
 		return nombreAleatoire;
 	}
+	
 }

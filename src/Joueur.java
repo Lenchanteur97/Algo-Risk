@@ -27,5 +27,17 @@ public class Joueur {
 		int nombreAleatoire = a + (int)(Math.random() * ((b - a) + 1));
 		return nombreAleatoire;
 	}
-
+	
+	public String CouleurToString() {
+		if (this.couleur==Color.RED) {
+			return "rouge";
+		}
+		else {
+			return "Autre couleur";
+		}
+	}
+	
+	public Color getColor() {
+		return couleur;
+	}
 }
