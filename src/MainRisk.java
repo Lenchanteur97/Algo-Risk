@@ -201,7 +201,7 @@ public class MainRisk {
 				ListeJoueur.get(i).TerritoiresJoueur.add(ListeTerritoiresRestants.get(y));
 				ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(y));
 				}
-<<<<<<< HEAD
+
 			}
 		int i=1;
 		//Si le reste de la division n'est pas nul alors il reste deux territoires à attribuer
@@ -210,15 +210,8 @@ public class MainRisk {
 			ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(reste-1));
 			i+=1;
 			reste=reste-1;
-=======
 		}
-		if(reste==2) {//Si le reste de la division n'est pas nul alors il reste deux territoires à attribuer
-			ListeJoueur.get(ListeJoueur.size()-1).TerritoiresJoueur.add(ListeTerritoiresRestants.get(0));
-			ListeJoueur.get(ListeJoueur.size()-2).TerritoiresJoueur.add(ListeTerritoiresRestants.get(1));
-			ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(1));
-			ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(0));
->>>>>>> 7a11151ee0b46dd977852b76b31314bddbcd75c5
-		}
+	
 	}
 
 	//Placement des armées
