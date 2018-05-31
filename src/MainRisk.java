@@ -201,17 +201,40 @@ public class MainRisk {
 				ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(y));
 				}
 			}
-		if(reste==2) {//Si le reste de la division n'est pas nul alors il reste deux territoires à attribuer
-			ListeJoueur.get(ListeJoueur.size()-1).TerritoiresJoueur.add(ListeTerritoiresRestants.get(0));
-			ListeJoueur.get(ListeJoueur.size()-2).TerritoiresJoueur.add(ListeTerritoiresRestants.get(1));
-			ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(1));
-			ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(0));
+		int i=1;
+		//Si le reste de la division n'est pas nul alors il reste deux territoires à attribuer
+		while(reste!=0) {
+			ListeJoueur.get(ListeJoueur.size()-i).TerritoiresJoueur.add(ListeTerritoiresRestants.get(reste-1));
+			ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(reste-1));
+			i+=1;
+			reste=reste-1;
 		}
 	}
 
 	//Placement des armées
 	public static void PlacerArmee(ArrayList<Joueur> ListeJoueur) {
 		int nbJoueurs = ListeJoueur.size();
+		int nbArmees;
+		switch(nbJoueurs) {
+		case(2):
+			nbArmees=40;
+			break;
+		case(3):
+			nbArmees=35;
+			break;
+		case(4):
+			nbArmees=30;
+			break;
+		case(5):
+			nbArmees=25;
+			break;
+		case(6):
+			nbArmees=20;
+			break;
+		}
+		for(int i=0; i<nbJoueurs; i+=1) {
+			
+		}
 			
 	}
 		
