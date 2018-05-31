@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -9,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-public class Panneau extends JPanel {
+public class Panneau extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	ArrayList<BoutonRond> ListeBoutons = new ArrayList<BoutonRond>();
 	
@@ -20,14 +22,14 @@ public class Panneau extends JPanel {
 		this.setBackground(new Color(0,0,0,0));
 		this.setLayout(null);
 		
+		// Ici, on créé une légende avec la liste des joueurs
 		JPanel PanneauLegende = new JPanel();
+		TitledBorder BordureTitreLegende = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Liste des joueurs");
 		PanneauLegende.setLayout(null);
 		PanneauLegende.setBackground(new Color(0,0,0,0));
-		PanneauLegende.setBorder(BorderFactory.createTitledBorder("Liste des joueurs"));
-		TitledBorder BordureTitreLegende = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Liste des joueurs");
-		BordureTitreLegende.setTitleJustification(TitledBorder.CENTER);
+		PanneauLegende.setBorder(BordureTitreLegende);
 		int i=0;
-		for (Joueur J : ListeJoueurs) {
+		for (Joueur J : ListeJoueurs) { // Pour chaque joueur, on affiche un carré avec son acronyme et sa couleur
 			JLabel Acronyme = new JLabel(J.acronyme);
 			Acronyme.setOpaque(true);
 			Acronyme.setBackground(J.couleur);
@@ -38,9 +40,9 @@ public class Panneau extends JPanel {
 			Acronyme.setBounds(25+65*i+25*i, 20, 65, 35);
 			Acronyme.setBackground(J.couleur);
 			i++;
-			
-			for(Territoire T : J.TerritoiresJoueur) {
+			for(Territoire T : J.TerritoiresJoueur) { // Pour chaque territoire on ajoute un bouton à la position indiquée dans chaque territoire
 				BoutonRond B = new BoutonRond("+",J.couleur);
+				B.addActionListener(this);
 				this.add(B);
 				B.setBounds(T.PosXBouton-12, T.PosYBouton-45, 20, 20);
 				ListeBoutons.add(B);
@@ -52,5 +54,14 @@ public class Panneau extends JPanel {
 	
 	public ArrayList<BoutonRond> getListeBoutons() {
 		return ListeBoutons;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		for (int i=0;i<ListeBoutons.size();i++) {
+			if (arg0.getSource()==ListeBoutons.get(i)) {
+				System.out.println("Vous avez cliqué sur le bouton"+i);
+			}
+		}
 	}
 }

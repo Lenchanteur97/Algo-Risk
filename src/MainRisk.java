@@ -60,6 +60,7 @@ public class MainRisk {
 		Panneau Panneau = new Panneau(ListeJoueurs);
 		fenetre.getContentPane().add(Panneau,BorderLayout.CENTER);
 		fenetre.validate();
+		ListeBoutonsTerritoires=Panneau.getListeBoutons();
 		//Placement des armees sur les territoires par les joueurs
 	}
 	
@@ -200,7 +201,7 @@ public class MainRisk {
 				ListeJoueur.get(i).TerritoiresJoueur.add(ListeTerritoiresRestants.get(y));
 				ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(y));
 				}
-			}
+		}
 		if(reste==2) {//Si le reste de la division n'est pas nul alors il reste deux territoires à attribuer
 			ListeJoueur.get(ListeJoueur.size()-1).TerritoiresJoueur.add(ListeTerritoiresRestants.get(0));
 			ListeJoueur.get(ListeJoueur.size()-2).TerritoiresJoueur.add(ListeTerritoiresRestants.get(1));

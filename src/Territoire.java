@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Territoire {
-	
+	public Joueur Joueur;
 	public String nom;
 	public ArrayList<Armée> ListeTroupes;
 	public ArrayList<Territoire> TerritoiresProches;

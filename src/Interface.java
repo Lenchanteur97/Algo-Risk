@@ -13,8 +13,7 @@ public class Interface extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-		this.setAlwaysOnTop(true);
-		PanneauImage Image = new PanneauImage();
+		PanneauImage Image = new PanneauImage(); // On ajoute l'image en fond
 		this.setContentPane(Image);
 		this.setVisible(true);
 	}
