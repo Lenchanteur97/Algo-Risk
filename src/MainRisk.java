@@ -215,6 +215,8 @@ public class MainRisk {
 	public static void PlacerArmee(ArrayList<Joueur> ListeJoueur) {
 		int nbJoueurs = ListeJoueur.size();
 		int nbArmees;
+		
+		//On initialise la varriable nombre d'armees à distribuer à chaque joueurs en fonction du nombre de joueurs
 		switch(nbJoueurs) {
 		case(2):
 			nbArmees=40;
@@ -232,8 +234,13 @@ public class MainRisk {
 			nbArmees=20;
 			break;
 		}
+		
+		//Tour à tour le joueur en question selectionne chaqu'un de ses territoires et y ajoute les armees qu'il veut (il est obligatoire d'avoir au moins 1 armee par territoire
+		//et il faut placer le nombre d'armees qu'on a pour chaque joueurs)
 		for(int i=0; i<nbJoueurs; i+=1) {
-			
+			//On selectionne le premier joueur
+			//On affiche la carte avec des points seulement dans ses territoires
+			//Quand il clique sur un de ses territoires on lui affiche en bas les 3 images d'armees possible a placer et le nombre d'armee qu'il lui reste a placer
 		}
 			
 	}
