@@ -15,11 +15,23 @@ public class Territoire {
 		this.TerritoiresProches = new ArrayList<Territoire>();
 	}
 	
-	
+	public int NombreUnite(String type) {
+		int nbTroupes=0;
+		for (Armée Troupe : this.ListeTroupes) {
+			if (Troupe.Type==type) {
+				nbTroupes++;
+			}
+		}
+		return nbTroupes;		
+	}
 	//Fonction recuperer le nom d'un territoire 
 	public String toString() {
 		return " "+this.nom;
 	}	
+	
+	public void setJoueur(Joueur J) {
+		this.Joueur=J;
+	}
 
 	
 }

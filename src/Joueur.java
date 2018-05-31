@@ -40,4 +40,6 @@ public class Joueur {
 	public Color getColor() {
 		return couleur;
 	}
+	
+	
 }
