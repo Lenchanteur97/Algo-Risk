@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Territoire {
 	
-	public Joueur joueur;
 	public String nom;
 	public ArrayList<Armée> ListeTroupes;
 	public ArrayList<Territoire> TerritoiresProches;
@@ -16,7 +15,6 @@ public class Territoire {
 		this.TerritoiresProches = new ArrayList<Territoire>();
 	}
 	
-
 	
 	//Fonction recuperer le nom d'un territoire 
 	public String toString() {

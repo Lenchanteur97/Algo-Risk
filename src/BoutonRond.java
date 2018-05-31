@@ -4,24 +4,24 @@ import java.awt.*;
 import java.awt.geom.*;
 
 public class BoutonRond extends JButton {
-	Territoire Territoire;
+	Color couleur;
 	private static final long serialVersionUID = 1L;
 	
-public BoutonRond(String label, Territoire T) {
+public BoutonRond(String label, Color couleur) {
     super(label);
-    this.Territoire=T;
+    this.couleur=couleur;
     setPreferredSize(new Dimension(20,20));
     setContentAreaFilled(false);
   }
 
   protected void paintComponent(Graphics g) {
-    g.setColor(Color.BLUE);
+	super.paintComponent(g);
+    g.setColor(couleur);
     g.fillOval(0, 0, getSize().width-1,getSize().height-1);
-
-    super.paintComponent(g);
   }
 
   protected void paintBorder(Graphics g) {
+	  super.paintBorder(g);
     g.setColor(getForeground());
     g.drawOval(0, 0, getSize().width-1,     getSize().height-1);
   }

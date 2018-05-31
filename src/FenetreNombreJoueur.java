@@ -60,6 +60,7 @@ public class FenetreNombreJoueur extends JDialog {
 		if (BoutonDejaActionner==true) { // Si l'utilisateur avait deja cliqué sur le nombre de joueurs, je retire la partie du milieu et du bas pour les re-afficher
 			this.remove(BL.getLayoutComponent(BorderLayout.CENTER)); 
 			this.remove(BL.getLayoutComponent(BorderLayout.SOUTH));
+			ListeTextField.removeAll(ListeTextField);
 		}
 		setSize(300,100+58*nbJoueurs);
 		JPanel PanAcronymes = new JPanel();

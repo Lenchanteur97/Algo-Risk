@@ -1,5 +1,5 @@
 
-import java.awt.Container;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 
 public class MainRisk {
@@ -14,7 +14,7 @@ public class MainRisk {
 		
 		
 		// Initialisation de la fentre et de la carte du monde
-		Interface fenetre = new Interface();
+		Interface fenetre = new Interface(ListeJoueurs);
 		
 		// Affichage d'une pop-up rÃ©cupÃ©rant le nombre de joueurs et leurs acronymes et créé les joueurs
 		FenetreNombreJoueur ChoixJoueurs = new FenetreNombreJoueur(fenetre,"Choix du nombre de joueurs",true,ListeJoueurs);
@@ -57,11 +57,9 @@ public class MainRisk {
 				
 				
 		// Ajout de la carte et de la légende des joueurs dans la fenetre de jeu
-		Panneau Panneau = new Panneau(ListeJoueurs, ListeTerritoires);
-		Container contentpane = fenetre.getContentPane();
-		contentpane.add(Panneau);
-		ListeBoutonsTerritoires=Panneau.getListeBoutons();
-		
+		Panneau Panneau = new Panneau(ListeJoueurs);
+		fenetre.getContentPane().add(Panneau,BorderLayout.CENTER);
+		fenetre.validate();
 		//Placement des armees sur les territoires par les joueurs
 	}
 	
@@ -214,8 +212,7 @@ public class MainRisk {
 	//Placement des armées
 	public static void PlacerArmee(ArrayList<Joueur> ListeJoueur) {
 		int nbJoueurs = ListeJoueur.size();
-		
-		
+			
 	}
 		
 	//Fonction qui genere un nombre aleatoire
