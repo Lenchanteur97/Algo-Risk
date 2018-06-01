@@ -57,7 +57,7 @@ public class MainRisk {
 
 		//Test PanneauAjoutArmée
 				//On cree une liste qui contiendra les panneaux d'ajout d'armees de chaque joueur
-				ArrayList ListePanneauAjoutArmee = new ArrayList<PanneauAjoutArmee>();
+				ArrayList<PanneauAjoutArmee> ListePanneauAjoutArmee = new ArrayList<PanneauAjoutArmee>();
 				for(Joueur J : ListeJoueurs) {
 					ListePanneauAjoutArmee.add(new PanneauAjoutArmee(J));
 				}

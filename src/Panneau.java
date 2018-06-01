@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -113,9 +114,10 @@ public class Panneau extends JPanel implements ActionListener {
 		NomJoueur2.setVerticalAlignment(SwingConstants.CENTER);
 		NomJoueur2.setHorizontalAlignment(SwingConstants.CENTER);
 		NomJoueur2.setPreferredSize(new Dimension(100,50));
-		JButton BoutonFinTour = new JButton();
+		JButton BoutonFinTour = new JButton("Fin du tour");
 		PanneauJoueurEnCours.add(NomJoueur);
 		PanneauJoueurEnCours.add(NomJoueur2);
+		PanneauJoueurEnCours.add(BoutonFinTour);
 		this.add(PanneauJoueurEnCours);
 		PanneauJoueurEnCours.setBounds(800, 0, 400, 50);		
 	}
