@@ -102,7 +102,7 @@ public class Panneau extends JPanel implements ActionListener {
 	public void AjouterNomJoueur (Joueur J) {
 		JPanel PanneauJoueurEnCours = new JPanel();
 		PanneauJoueurEnCours.setLayout(new FlowLayout());
-		PanneauJoueurEnCours.setBackground(new Color(0,0,0,120));
+		PanneauJoueurEnCours.setBackground(new Color(0,0,0,0));
 		JLabel NomJoueur = new JLabel("Tour de jeu : ");
 		JLabel NomJoueur2 = new JLabel(J.acronyme);
 		NomJoueur.setFont(new Font("Arial",Font.BOLD,32));
@@ -114,12 +114,15 @@ public class Panneau extends JPanel implements ActionListener {
 		NomJoueur2.setVerticalAlignment(SwingConstants.CENTER);
 		NomJoueur2.setHorizontalAlignment(SwingConstants.CENTER);
 		NomJoueur2.setPreferredSize(new Dimension(100,50));
-		JButton BoutonFinTour = new JButton();
+		JButton BoutonFinTour = new JButton("Fin du tour");
+		BoutonFinTour.setPreferredSize(new Dimension(100,50));
 		PanneauJoueurEnCours.add(NomJoueur);
 		PanneauJoueurEnCours.add(NomJoueur2);
+		PanneauJoueurEnCours.add(BoutonFinTour);
 		this.add(PanneauJoueurEnCours);
-		PanneauJoueurEnCours.setBounds(800, 0, 400, 50);		
+		PanneauJoueurEnCours.setBounds(800, 0, 500, 60);		
 	}
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) { // Action réalisée quand on clique sur un territoire
