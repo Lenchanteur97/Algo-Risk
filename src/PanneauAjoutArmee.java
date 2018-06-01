@@ -1,26 +1,19 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
 
 //import FenetreNombreJoueur.BoutonListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class PanneauAjoutArmee extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
@@ -54,11 +47,28 @@ public class PanneauAjoutArmee extends JPanel implements ActionListener{
 			}
 		
 		//On met en bas à droite un bouton pour valider l'ajout des armees
-		JButton OK_BOUTON = new JButton("Finaliser"); // Création d'un bouton valider
-		OK_BOUTON.setBounds(1700, 975, 200, 50);
-		this.add(OK_BOUTON);
-		OK_BOUTON.addActionListener(new BoutonFinalisation());
-		
+		JPanel PanneauJoueurEnCours = new JPanel();
+		PanneauJoueurEnCours.setLayout(new FlowLayout());
+		PanneauJoueurEnCours.setBackground(new Color(0,0,0,0));
+		JLabel NomJoueur = new JLabel("Tour de jeu : ");
+		JLabel NomJoueur2 = new JLabel(J.acronyme);
+		NomJoueur.setFont(new Font("Arial",Font.BOLD,32));
+		NomJoueur.setVerticalAlignment(SwingConstants.CENTER);
+		NomJoueur.setHorizontalAlignment(SwingConstants.CENTER);
+		NomJoueur2.setFont(new Font("Arial",Font.BOLD,32));
+		NomJoueur2.setOpaque(true);
+		NomJoueur2.setBackground(J.couleur);
+		NomJoueur2.setVerticalAlignment(SwingConstants.CENTER);
+		NomJoueur2.setHorizontalAlignment(SwingConstants.CENTER);
+		NomJoueur2.setPreferredSize(new Dimension(100,50));
+		JButton BoutonFinalisation = new JButton("Fin du tour");
+		BoutonFinalisation.addActionListener(new BoutonFinalisation());
+		BoutonFinalisation.setPreferredSize(new Dimension(100,50));
+		PanneauJoueurEnCours.add(NomJoueur);
+		PanneauJoueurEnCours.add(NomJoueur2);
+		PanneauJoueurEnCours.add(BoutonFinalisation);
+		this.add(PanneauJoueurEnCours);
+		PanneauJoueurEnCours.setBounds(800, 0, 500, 60);
 	}
 	
 
@@ -79,6 +89,8 @@ public class PanneauAjoutArmee extends JPanel implements ActionListener{
 		    	Finalisation = true;
 		    }
 		  }
+		
+		
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//x
