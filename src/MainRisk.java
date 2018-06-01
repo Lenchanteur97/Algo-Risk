@@ -11,7 +11,6 @@ public class MainRisk {
 		ArrayList<Joueur> ListeJoueurs = new ArrayList<Joueur>();
 		ArrayList<Territoire> ListeTerritoires = new ArrayList<Territoire>();
 		ArrayList<Region> ListeRegions = new ArrayList<Region>();
-		ArrayList<BoutonRond> ListeBoutonsTerritoires = new ArrayList<BoutonRond>();
 		
 		
 		// Initialisation de la fentre et de la carte du monde
@@ -91,10 +90,22 @@ public class MainRisk {
 				
 				
 				
+<<<<<<< HEAD
 		
 				
 		//Placement des armees sur les territoires par les joueurs
 	
+=======
+		// Ajout de la carte et de la légende des joueurs dans la fenetre de jeu
+		Panneau Panneau = new Panneau(ListeJoueurs,ListeTerritoires);
+		fenetre.getContentPane().add(Panneau,BorderLayout.CENTER);
+		fenetre.validate();
+		//Placement des armees sur les territoires par les joueurs
+		Panneau.AjouterNomJoueur(ListeJoueurs.get(0));
+		fenetre.getContentPane().repaint();
+		fenetre.validate();
+	}
+>>>>>>> 66a8d0cdfe83bcce7d56efd898f4d443f205ad2c
 	
 	
 	

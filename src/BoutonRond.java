@@ -26,7 +26,7 @@ public BoutonRond(String label, Color couleur) {
     g.drawOval(0, 0, getSize().width-1,     getSize().height-1);
   }
 
-  Shape shape; // Cela permet de se proteger des erreurs
+  Shape shape; // Cela permet de créer un arrondi
   public boolean contains(int x, int y) {
     if (shape == null || 
       !shape.getBounds().equals(getBounds())) {

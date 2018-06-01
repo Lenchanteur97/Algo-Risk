@@ -31,6 +31,12 @@
 /BoutonRond.class
 /RoundedBorder.class
 /PanneauImage.class
+<<<<<<< HEAD
 /PanneauAjoutArmee.class
 /PanneauAjoutArmee$BoutonListener.class
 /PanneauAjoutArmee$BoutonFinalisation.class
+=======
+/PanneauSoldat.class
+/PanneauCavalier.class
+/PanneauCanon.class
+>>>>>>> 66a8d0cdfe83bcce7d56efd898f4d443f205ad2c
