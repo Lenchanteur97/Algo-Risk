@@ -60,6 +60,9 @@ public class MainRisk {
 		fenetre.getContentPane().add(Panneau,BorderLayout.CENTER);
 		fenetre.validate();
 		//Placement des armees sur les territoires par les joueurs
+		Panneau.AjouterNomJoueur(ListeJoueurs.get(0));
+		fenetre.getContentPane().repaint();
+		fenetre.validate();
 	}
 	
 	

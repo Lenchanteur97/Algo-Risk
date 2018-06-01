@@ -98,6 +98,28 @@ public class Panneau extends JPanel implements ActionListener {
 		PanneauLegende.setBounds(0, 0, 25+90*ListeJoueurs.size(), 70);
 	}
 	
+	public void AjouterNomJoueur (Joueur J) {
+		JPanel PanneauJoueurEnCours = new JPanel();
+		PanneauJoueurEnCours.setLayout(new FlowLayout());
+		PanneauJoueurEnCours.setBackground(new Color(0,0,0,120));
+		JLabel NomJoueur = new JLabel("Tour de jeu : ");
+		JLabel NomJoueur2 = new JLabel(J.acronyme);
+		NomJoueur.setFont(new Font("Arial",Font.BOLD,32));
+		NomJoueur.setVerticalAlignment(SwingConstants.CENTER);
+		NomJoueur.setHorizontalAlignment(SwingConstants.CENTER);
+		NomJoueur2.setFont(new Font("Arial",Font.BOLD,32));
+		NomJoueur2.setOpaque(true);
+		NomJoueur2.setBackground(J.couleur);
+		NomJoueur2.setVerticalAlignment(SwingConstants.CENTER);
+		NomJoueur2.setHorizontalAlignment(SwingConstants.CENTER);
+		NomJoueur2.setPreferredSize(new Dimension(100,50));
+		JButton BoutonFinTour = new JButton();
+		PanneauJoueurEnCours.add(NomJoueur);
+		PanneauJoueurEnCours.add(NomJoueur2);
+		this.add(PanneauJoueurEnCours);
+		PanneauJoueurEnCours.setBounds(800, 0, 400, 50);		
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) { // Action réalisée quand on clique sur un territoire
 		for (int i=0;i<ListeBoutons.size();i++) {
