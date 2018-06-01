@@ -31,3 +31,6 @@
 /BoutonRond.class
 /RoundedBorder.class
 /PanneauImage.class
+/PanneauAjoutArmee.class
+/PanneauAjoutArmee$BoutonListener.class
+/PanneauAjoutArmee$BoutonFinalisation.class
