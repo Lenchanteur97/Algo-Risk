@@ -56,34 +56,10 @@ public class MainRisk {
 				}
 
 		//Test PanneauAjoutArmée
-<<<<<<< HEAD
+
 				AffichagePanneauxAjoutArmees(ListeJoueurs, fenetre);
-=======
-				//On cree une liste qui contiendra les panneaux d'ajout d'armees de chaque joueur
-				ArrayList<PanneauAjoutArmee> ListePanneauAjoutArmee = new ArrayList<PanneauAjoutArmee>();
-				for(Joueur J : ListeJoueurs) {
-					ListePanneauAjoutArmee.add(new PanneauAjoutArmee(J));
-				}
+
 				
-				//Boucle qui passe d'un joueur à un autre lors que celui ci finalise ses ajout d'armees
-				int i=0;
-					while(i<=ListeJoueurs.size()){
-						if(i==ListeJoueurs.size() && ((PanneauAjoutArmee) ListePanneauAjoutArmee.get(i-1)).getFinalisation() == true){//Quand le dernier joueur a valider son ajout d'armee
-							fenetre.remove((Component) ListePanneauAjoutArmee.get(i-1));
-							break;
-						}
-						else if (i!=0 && i!=ListeJoueurs.size()){//Supprime à partir du 2eme joueur le panneau du joueur precedent
-							fenetre.remove((Component) ListePanneauAjoutArmee.get(i-1));
-						}
-						if(i<ListeJoueurs.size()) {//Cree un panneau au joueur i
-							fenetre.getContentPane().add((Component) ListePanneauAjoutArmee.get(i),BorderLayout.CENTER);
-							fenetre.validate();
-						}
-						if(((PanneauAjoutArmee) ListePanneauAjoutArmee.get(i)).getFinalisation() == true) {//Incremente i si le joueur valide son ajout d'armee
-							i+=1;							
-						}
-					}
->>>>>>> cd4801760305784a83d86533355bbbbc77526722
 					
 					// Ajout de la carte et de la légende des joueurs dans la fenetre de jeu
 					Panneau Panneau = new Panneau(ListeJoueurs,ListeTerritoires);
@@ -257,7 +233,7 @@ public class MainRisk {
 	//Fonction panneaux d'ajout d'armees
 	public static void AffichagePanneauxAjoutArmees(ArrayList<Joueur> ListeJoueur, Interface fenetre) {
 		//On cree une liste qui contiendra les panneaux d'ajout d'armees de chaque joueur
-		ArrayList ListePanneauAjoutArmee = new ArrayList<PanneauAjoutArmee>();
+		ArrayList<PanneauAjoutArmee> ListePanneauAjoutArmee = new ArrayList<PanneauAjoutArmee>();
 		for(Joueur J : ListeJoueur) {
 			ListePanneauAjoutArmee.add(new PanneauAjoutArmee(J));
 		}
