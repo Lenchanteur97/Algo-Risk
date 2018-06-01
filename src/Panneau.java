@@ -92,7 +92,7 @@ public class Panneau extends JPanel implements ActionListener {
 				PanneauInfo.add(labelNbCanon);
 				labelNbCanon.setBounds(80, 0, 10, 20);
 				this.add(PanneauInfo);
-				PanneauInfo.setBounds(T.PosXBouton-12-30, T.PosYBouton-45-20, 90, 20);	
+				PanneauInfo.setBounds(T.PosXBouton-12-30, T.PosYBouton-45-20, 90, 20);
 			}
 		}
 		this.add(PanneauLegende);
@@ -115,12 +115,13 @@ public class Panneau extends JPanel implements ActionListener {
 		NomJoueur2.setHorizontalAlignment(SwingConstants.CENTER);
 		NomJoueur2.setPreferredSize(new Dimension(100,50));
 		JButton BoutonFinTour = new JButton("Fin du tour");
-		BoutonFinTour.setPreferredSize(new Dimension(100,50));
+		BoutonFinTour.setFont(new Font("Arial", Font.BOLD, 20));
+		BoutonFinTour.setPreferredSize(new Dimension(150,50));
 		PanneauJoueurEnCours.add(NomJoueur);
 		PanneauJoueurEnCours.add(NomJoueur2);
 		PanneauJoueurEnCours.add(BoutonFinTour);
 		this.add(PanneauJoueurEnCours);
-		PanneauJoueurEnCours.setBounds(800, 0, 500, 60);		
+		PanneauJoueurEnCours.setBounds(800, 0, 550, 60);		
 	}
 	
 	
