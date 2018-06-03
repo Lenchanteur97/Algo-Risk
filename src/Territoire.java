@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class Territoire {
 	public Joueur Joueur;
 	public String nom;
-	public ArrayList<Armée> ListeSoldat;
-	public ArrayList<Armée> ListeCavalier;
-	public ArrayList<Armée> ListeCanon;
+	public ArrayList<ArmÃ©e> ListeSoldat;
+	public ArrayList<ArmÃ©e> ListeCavalier;
+	public ArrayList<ArmÃ©e> ListeCanon;
 	public ArrayList<Territoire> TerritoiresProches;
 	public final Region Region;
 	public int PosXBouton;
@@ -15,10 +15,9 @@ public class Territoire {
 		this.nom = nom;
 		Region = region;
 		this.TerritoiresProches = new ArrayList<Territoire>();
-		this.ListeSoldat = new ArrayList<Armée>();
-		this.ListeCavalier = new ArrayList<Armée>();
-		this.ListeCanon = new ArrayList<Armée>();
-		
+		this.ListeSoldat = new ArrayList<ArmÃ©e>();
+		this.ListeCavalier = new ArrayList<ArmÃ©e>();
+		this.ListeCanon = new ArrayList<ArmÃ©e>();
 	}
 	
 	//Fonction recuperer le nom d'un territoire 

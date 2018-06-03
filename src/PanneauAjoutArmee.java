@@ -1,7 +1,9 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 
 //import FenetreNombreJoueur.BoutonListener;
 
@@ -15,22 +17,45 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class PanneauAjoutArmee extends JPanel implements ActionListener{
+public class PanneauAjoutArmee extends JPanel {
 	private static final long serialVersionUID = 1L;
-	ArrayList<BoutonRond> ListeBoutons = new ArrayList<BoutonRond>();
+	ArrayList<BoutonRond> ListeBoutonsInitialisation = new ArrayList<BoutonRond>();
 	
 	boolean Finalisation = false;
-	ImageIcon Soldat;
-	ImageIcon Cavalier;
-	ImageIcon Canon;
-	
+	ImageIcon image_soldat;
+	ImageIcon image_cavalier;
+	ImageIcon image_canon;
+	Joueur Joueur;
+	int indice;
+	boolean VerifAffichageContenuTerritoire;
+	JPanel ContenuTerritoire;
+	JButton SupprimerSoldat;
+	JButton AjouterSoldat;
+	JLabel NbSoldats;
+	JButton SupprimerCavalier;
+	JButton AjouterCavalier;
+	JLabel NbCavaliers;
+	JButton SupprimerCanon;
+	JButton AjouterCanon;
+	JLabel NbCanons;
+	JButton BoutonFinalisation;
+
+
 	public PanneauAjoutArmee(Joueur J) {
 		super();
+		this.Joueur = J;
+		this.VerifAffichageContenuTerritoire = true;
+		this.SupprimerSoldat = new JButton("-");
+		this.SupprimerCavalier = new JButton("-");
+		this.SupprimerCanon = new JButton("-");
+		this.AjouterSoldat = new JButton("+");
+		this.AjouterCavalier = new JButton("+");
+		this.AjouterCanon = new JButton("+");
 		
 		//On charge les images de soldat cavalier et canon
-		//this.Soldat = new ImageIcon(getClass().getResource("icon-soldat.png")); // On charge l'image du soldat
-		//this.Cavalier = new ImageIcon(getClass().getResource("icon-cavalier.png")); // On charge l'image du soldat
-		//this.Canon = new ImageIcon(getClass().getResource("icon-canon.png")); // On charge l'image du soldat
+		this.image_soldat = new ImageIcon(getClass().getResource("icone-soldat.png"));
+		this.image_cavalier = new ImageIcon(getClass().getResource("icone-cavalier.png"));
+		this.image_canon = new ImageIcon(getClass().getResource("icone-canon.png"));
 
 		//On definit notre panneau taille, couleur
 		this.setPreferredSize(new Dimension(1914,1045));
@@ -40,66 +65,211 @@ public class PanneauAjoutArmee extends JPanel implements ActionListener{
 		//On ajoute un bouton à chaque territoire du joueur
 		for(Territoire T : J.TerritoiresJoueur) {
 				BoutonRond B = new BoutonRond("+",J.couleur);
-				B.addActionListener(this);
 				this.add(B);
 				B.setBounds(T.PosXBouton-12, T.PosYBouton-45, 20, 20);
-				ListeBoutons.add(B);
+				ListeBoutonsInitialisation.add(B);
 			}
 		
-		//On met en bas à droite un bouton pour valider l'ajout des armees
+		//Affiche un panneau qui selon le tour affiche le nom du joueur et un bouton pour finaliser son action
 		JPanel PanneauJoueurEnCours = new JPanel();
 		PanneauJoueurEnCours.setLayout(new FlowLayout());
 		PanneauJoueurEnCours.setBackground(new Color(0,0,0,0));
-		JLabel NomJoueur = new JLabel("Tour de jeu : ");
-		JLabel NomJoueur2 = new JLabel(J.acronyme);
-		NomJoueur.setFont(new Font("Arial",Font.BOLD,32));
-		NomJoueur.setVerticalAlignment(SwingConstants.CENTER);
-		NomJoueur.setHorizontalAlignment(SwingConstants.CENTER);
-		NomJoueur2.setFont(new Font("Arial",Font.BOLD,32));
-		NomJoueur2.setOpaque(true);
-		NomJoueur2.setBackground(J.couleur);
-		NomJoueur2.setVerticalAlignment(SwingConstants.CENTER);
-		NomJoueur2.setHorizontalAlignment(SwingConstants.CENTER);
-		NomJoueur2.setPreferredSize(new Dimension(100,50));
-		JButton BoutonFinalisation = new JButton("Fin du tour");
-		BoutonFinalisation.addActionListener(new BoutonFinalisation());
-		BoutonFinalisation.setPreferredSize(new Dimension(100,50));
+			JLabel NomJoueur = new JLabel("Placement des armees : ");
+			JLabel NomJoueur2 = new JLabel(J.acronyme);
+			NomJoueur.setFont(new Font("Arial",Font.BOLD,32));
+			NomJoueur.setVerticalAlignment(SwingConstants.CENTER);
+			NomJoueur.setHorizontalAlignment(SwingConstants.CENTER);
+			NomJoueur2.setFont(new Font("Arial",Font.BOLD,32));
+			NomJoueur2.setOpaque(true);
+			NomJoueur2.setBackground(J.couleur);
+			NomJoueur2.setVerticalAlignment(SwingConstants.CENTER);
+			NomJoueur2.setHorizontalAlignment(SwingConstants.CENTER);
+			NomJoueur2.setPreferredSize(new Dimension(100,50));
+			BoutonFinalisation = new JButton("Finalisation");
+			BoutonFinalisation.setFont(new Font("Arial", Font.BOLD, 20));
+			BoutonFinalisation.setPreferredSize(new Dimension(150,50));
+			
 		PanneauJoueurEnCours.add(NomJoueur);
 		PanneauJoueurEnCours.add(NomJoueur2);
 		PanneauJoueurEnCours.add(BoutonFinalisation);
 		this.add(PanneauJoueurEnCours);
-		PanneauJoueurEnCours.setBounds(800, 0, 500, 60);
+		PanneauJoueurEnCours.setBounds(800, 0, 650, 60);
 	}
 	
+	
+	public void AffichageContenuTerritoire(Territoire T) {
+		if(VerifAffichageContenuTerritoire == true) {
+			this.ContenuTerritoire=CreerContenuTerritoire();
+		}
+		else {
+			remove(ContenuTerritoire);
+			this.ContenuTerritoire=CreerContenuTerritoire();
+		}
+		VerifAffichageContenuTerritoire = false;
+		this.add(ContenuTerritoire);	
+		ContenuTerritoire.setBounds(0, 590, 400, 450);
+	}
+		
 
-	public ArrayList<BoutonRond> getListeBoutons() {
-		return ListeBoutons;
-	}
-	
-	//public void paintComponent(Graphics g) {
-		//super.paintComponent(g);
-	    //g.drawImage(Soldat.getImage(), 0, 1000, 50, 1050, this);
-	    //g.drawImage(Cavalier.getImage(), 150, 1000, 200, 1050, this);
-	    //g.drawImage(Canon.getImage(), 250, 1000, 300, 1050, this);
-	//}
-	
-	// Action réalisée quand on clique sur le bouton Valider
-		public class BoutonFinalisation implements ActionListener{
-		    public void actionPerformed(ActionEvent e) {
-		    	Finalisation = true;
-		    }
-		  }
+	public JPanel CreerContenuTerritoire() {
+		ContenuTerritoire = new JPanel();
+		ContenuTerritoire.setLayout(new GridLayout(3,1));
+		ContenuTerritoire.setBackground(new Color(0,0,0,0));
 		
 		
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		//x
-		//ListeTerritoire.get(x).ListeTroupes.)
+			JPanel PanneauAjoutSoldat = new JPanel();
+			PanneauAjoutSoldat.setLayout(null);
+			PanneauAjoutSoldat.setBackground(new Color(0,0,0,0));
+			PanneauAjoutSoldat.setPreferredSize(new Dimension(400,150));
+				PanneauSoldat PanneauSoldat = new PanneauSoldat();
+				SupprimerSoldat.setFont(new Font("Arial", Font.BOLD, 40));
+				if(Joueur.TerritoiresJoueur.get(indice).ListeSoldat.size()==0) {
+					SupprimerSoldat.setEnabled(false);
+				}
+				AjouterSoldat.setFont(new Font("Arial", Font.BOLD, 25));
+				NbSoldats = new JLabel("", JLabel.CENTER);
+				NbSoldats.setText(Integer.toString(Joueur.TerritoiresJoueur.get(indice).ListeSoldat.size()));
+				NbSoldats.setFont(new Font("Arial",Font.BOLD,40));
+				
+				PanneauAjoutSoldat.add(PanneauSoldat);
+				PanneauSoldat.setBounds(0, 0, 170, 145);
+				PanneauAjoutSoldat.add(SupprimerSoldat);
+				SupprimerSoldat.setBounds(180,50,50,50);
+				PanneauAjoutSoldat.add(NbSoldats);
+				NbSoldats.setBounds(240,0,100,145);
+				PanneauAjoutSoldat.add(AjouterSoldat);
+				AjouterSoldat.setBounds(350,50,50,50);
+				ContenuTerritoire.add(PanneauAjoutSoldat);
+				
+			
+			
+			JPanel PanneauAjoutCavalier = new JPanel();
+			PanneauAjoutCavalier.setLayout(null);
+			PanneauAjoutCavalier.setBackground(new Color(0,0,0,0));
+			PanneauAjoutSoldat.setPreferredSize(new Dimension(400,150));
+				PanneauCavalier PanneauCavalier = new PanneauCavalier();
+				SupprimerCavalier.setFont(new Font("Arial", Font.BOLD, 40));
+				if(Joueur.TerritoiresJoueur.get(indice).ListeCavalier.size()==0) {
+					SupprimerCavalier.setEnabled(false);
+				}
+				AjouterCavalier.setFont(new Font("Arial", Font.BOLD, 25));
+				NbCavaliers = new JLabel("", JLabel.CENTER);
+				NbCavaliers.setText(Integer.toString(Joueur.TerritoiresJoueur.get(indice).ListeCavalier.size()));
+				NbCavaliers.setFont(new Font("Arial",Font.BOLD,40));
+				
+				PanneauAjoutCavalier.add(PanneauCavalier);
+				PanneauCavalier.setBounds(0, 0, 170, 145);
+				PanneauAjoutCavalier.add(SupprimerCavalier);
+				SupprimerCavalier.setBounds(180,50,50,50);
+				PanneauAjoutCavalier.add(NbCavaliers);
+				NbCavaliers.setBounds(240,0,100,145);
+				PanneauAjoutCavalier.add(AjouterCavalier);
+				AjouterCavalier.setBounds(350,50,50,50);
+				ContenuTerritoire.add(PanneauAjoutCavalier);
+		
+			
+			JPanel PanneauAjoutCanon = new JPanel();
+			PanneauAjoutCanon.setLayout(null);
+			PanneauAjoutCanon.setBackground(new Color(0,0,0,0));
+			PanneauAjoutSoldat.setPreferredSize(new Dimension(400,150));
+				PanneauCanon PanneauCanon = new PanneauCanon();
+				SupprimerCanon.setFont(new Font("Arial", Font.BOLD, 40));
+				if(Joueur.TerritoiresJoueur.get(indice).ListeCanon.size()==0) {
+					SupprimerCanon.setEnabled(false);
+				}
+				AjouterCanon.setFont(new Font("Arial", Font.BOLD, 25));
+				NbCanons = new JLabel("", JLabel.CENTER);
+				NbCanons.setText(Integer.toString(Joueur.TerritoiresJoueur.get(indice).ListeCanon.size()));
+				NbCanons.setFont(new Font("Arial",Font.BOLD,40));
+				
+				PanneauAjoutCanon.add(PanneauCanon);
+				PanneauCanon.setBounds(0, 0, 170, 145);
+				PanneauAjoutCanon.add(SupprimerCanon);
+				SupprimerCanon.setBounds(180,50,50,50);
+				PanneauAjoutCanon.add(NbCanons);
+				NbCanons.setBounds(240,0,100,145);
+				PanneauAjoutCanon.add(AjouterCanon);
+				AjouterCanon.setBounds(350,50,50,50);
+				ContenuTerritoire.add(PanneauAjoutCanon);
+		
+			return ContenuTerritoire;
 	}
-	
-	public boolean getFinalisation() {
-		return this.Finalisation;
-	}
-	
 
+//Getter
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
+	public Joueur getJoueur() {
+		return Joueur;
+	}
+
+
+	public int getIndice() {
+		return indice;
+	}
+
+
+	public boolean isVerifAffichageContenuTerritoire() {
+		return VerifAffichageContenuTerritoire;
+	}
+
+
+	public JPanel getContenuTerritoire() {
+		return ContenuTerritoire;
+	}
+
+
+	public JButton getSupprimerSoldat() {
+		return SupprimerSoldat;
+	}
+
+
+	public JButton getAjouterSoldat() {
+		return AjouterSoldat;
+	}
+
+
+	public JLabel getNbSoldats() {
+		return NbSoldats;
+	}
+
+
+	public JButton getSupprimerCavalier() {
+		return SupprimerCavalier;
+	}
+
+
+	public JButton getAjouterCavalier() {
+		return AjouterCavalier;
+	}
+
+
+	public JLabel getNbCavaliers() {
+		return NbCavaliers;
+	}
+
+
+	public JButton getSupprimerCanon() {
+		return SupprimerCanon;
+	}
+
+
+	public JButton getAjouterCanon() {
+		return AjouterCanon;
+	}
+
+
+	public JLabel getNbCanons() {
+		return NbCanons;
+	}
+
+	public JButton getBoutonFinalisation() {
+		return BoutonFinalisation;
+	}
+
+	public ArrayList<BoutonRond> getListeBoutonsInitialisation(){
+		return ListeBoutonsInitialisation;
+	}
 }
