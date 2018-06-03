@@ -91,7 +91,7 @@ public class Interface extends JFrame {
 			// Action r√©alis√©e quand on clique sur le bouton ajouter Soldat
 				public class BoutonAjouterSoldat implements ActionListener{
 					public void actionPerformed(ActionEvent e) {
-						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.add(new Arm√©e("Soldat"));
+						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.add(new ArmÈe("Soldat"));
 						PanneauAjoutArmee.NbSoldats.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.size()));
 							if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.size()!=0) {
 								PanneauAjoutArmee.SupprimerSoldat.setEnabled(true);
@@ -119,7 +119,7 @@ public class Interface extends JFrame {
 			//Action realisee quand on clique sur le bouton ajouter Cavalier
 				public class BoutonAjouterCavalier implements ActionListener{
 					public void actionPerformed(ActionEvent e) {
-						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.add(new Arm√©e("Cavalier"));
+						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.add(new ArmÈe("Cavalier"));
 						PanneauAjoutArmee.NbCavaliers.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.size()));
 							if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.size()!=0) {
 								PanneauAjoutArmee.SupprimerCavalier.setEnabled(true);
@@ -147,7 +147,7 @@ public class Interface extends JFrame {
 			//Action realisee quand on clique sur le bouton ajouter Canon
 				public class BoutonAjouterCanon implements ActionListener{
 					public void actionPerformed(ActionEvent e) {
-						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.add(new Arm√©e("Canon"));
+						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.add(new ArmÈe("Canon"));
 						PanneauAjoutArmee.NbCanons.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.size()));
 							if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.size()!=0) {
 								PanneauAjoutArmee.SupprimerCanon.setEnabled(true);
