@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class MainRisk {
 
 	public static void main(String[] args) {
-		// Création des ArrayList contenant les informations nécessaires au jeu
+		// CrÃ©ation des ArrayList contenant les informations nÃ©cessaires au jeu
 		ArrayList<Missions> ListeMissions= new ArrayList<Missions>();
 		ArrayList<Joueur> ListeJoueurs = new ArrayList<Joueur>();
 		ArrayList<Territoire> ListeTerritoires = new ArrayList<Territoire>();
@@ -16,25 +16,25 @@ public class MainRisk {
 		// Initialisation de la fentre et de la carte du monde
 		Interface fenetre = new Interface(ListeJoueurs);
 		
-		// Affichage d'une pop-up récupérant le nombre de joueurs et leurs acronymes et cr�� les joueurs
+		// Affichage d'une pop-up rÃ©cupÃ©rant le nombre de joueurs et leurs acronymes et créé les joueurs
 		FenetreNombreJoueur ChoixJoueurs = new FenetreNombreJoueur(fenetre,"Choix du nombre de joueurs",true,ListeJoueurs);
 		
-		//Création des missions en fonction du nombre de joueurs dans la partie
+		//CrÃ©ation des missions en fonction du nombre de joueurs dans la partie
 				GenererMissions(ListeJoueurs.size(), ListeMissions);
-				//Attribution des missions à chaque joueur
+				//Attribution des missions Ã  chaque joueur
 				for (Joueur J : ListeJoueurs) {
 					J.AttribuerMissions(ListeMissions);
 					System.out.println(J.acronyme+" "+J.Mission.toString());
 				}
 
 				
-				//Création des regions et des territoires
+				//CrÃ©ation des regions et des territoires
 				GenererRegionsTerritoires(ListeRegions, ListeTerritoires);
-				// Affichage des regions en console pour v�rifier que le code marche
+				// Affichage des regions en console pour vérifier que le code marche
 				for (Region reg : ListeRegions) {
 					System.out.print(reg.toString());
 				}
-				// Affichage des territoires en console pour v�rifier que le code marche
+				// Affichage des territoires en console pour vérifier que le code marche
 				for (Territoire ter : ListeTerritoires) {
 					System.out.print(ter.TerritoiresProches.toString());
 					System.out.println(ter.PosXBouton+","+ter.PosYBouton);
@@ -42,8 +42,8 @@ public class MainRisk {
 
 				
 				
-				//Attribution des territoires � chaque joueur
-				ArrayList<Territoire> ListeTerritoiresRestants = new ArrayList<Territoire>();//On cr�� une liste avec tous les territoires pour pouvoir la modifier en gardant ListeTerritoires intacte
+				//Attribution des territoires à chaque joueur
+				ArrayList<Territoire> ListeTerritoiresRestants = new ArrayList<Territoire>();//On créé une liste avec tous les territoires pour pouvoir la modifier en gardant ListeTerritoires intacte
 				ListeTerritoiresRestants.addAll(ListeTerritoires);
 				AttribuerTerritoires(ListeJoueurs, ListeTerritoires, ListeTerritoiresRestants);
 				
@@ -54,20 +54,13 @@ public class MainRisk {
 					System.out.print(J.TerritoiresJoueur.toString());
 					System.out.println(J.CouleurToString());
 				}
-
-		//Test PanneauAjoutArm�e
+				
+		//Test PanneauAjoutArmée
 				int NumJoueurInitialisation = 0;
 				fenetre.AfficherPanneauAjoutArmee(NumJoueurInitialisation);
-					// Ajout de la carte et de la l�gende des joueurs dans la fenetre de jeu
-					//Panneau Panneau = new Panneau(ListeJoueurs,ListeTerritoires);
-					//fenetre.getContentPane().add(Panneau,BorderLayout.CENTER);
-					//fenetre.validate();
-					//Placement des armees sur les territoires par les joueurs
-					//Panneau.AjouterNomJoueur(ListeJoueurs.get(0));
-					//fenetre.getContentPane().repaint();
-					//fenetre.validate();
-				
-
+					// Début du jeu
+				int NumJoueur = 0;
+				fenetre.AjouterPanneauPrincipal(ListeJoueurs, ListeTerritoires, NumJoueur);
 	}
 							
 	
@@ -114,7 +107,7 @@ public class MainRisk {
 				Missions M2_4 = new Missions("Controler 3 regions et au moins 18 territoires ");
 				Missions M3_4 = new Missions("Controler 18 territoires avec au moins 2 armees");
 				Missions M4_4 = new Missions("Controler 24 territoires");
-				Missions M5_4 = new Missions("Controler la plus grosse région + 1 autre region");
+				Missions M5_4 = new Missions("Controler la plus grosse rÃ©gion + 1 autre region");
 				ListeMissions.add(M1_4);
 				ListeMissions.add(M2_4);
 				ListeMissions.add(M3_4);
@@ -166,9 +159,9 @@ public class MainRisk {
 									{"AF1", "AF2", "AF3", "AF4", "AF5", "AF6"}};
 		for(int i=0 ; i<ListeRegions.size(); i++) {
 			for(int j=0; j<Territoires[i].length; j++) {
-				Territoire T = new Territoire(Territoires[i][j], ListeRegions.get(i)); // On instancie les territoires de chaque région
-				ListeTerritoires.add(T); // On ajoute ce territoire à l'arraylist contenant tous les territoires
-				ListeRegions.get(i).Territoires.add(T); // On ajoute ce territoire à l'arraylist Territoire de chaques régions
+				Territoire T = new Territoire(Territoires[i][j], ListeRegions.get(i)); // On instancie les territoires de chaque rÃ©gion
+				ListeTerritoires.add(T); // On ajoute ce territoire Ã  l'arraylist contenant tous les territoires
+				ListeRegions.get(i).Territoires.add(T); // On ajoute ce territoire Ã  l'arraylist Territoire de chaques rÃ©gions
 			}
 		}
 		//Initialisation des territoires proches
@@ -208,7 +201,7 @@ public class MainRisk {
 		int nbJoueurs = ListeJoueur.size();
 		int reste = ListeTerritoires.size()%nbJoueurs;
 		
-		while(ListeTerritoiresRestants.size()!=reste) {//Boucle qui s'execute tant que la liste TerritoiresRestants n'est pas �gale au reste du nombre de territoires par le nombre de joueurs
+		while(ListeTerritoiresRestants.size()!=reste) {//Boucle qui s'execute tant que la liste TerritoiresRestants n'est pas égale au reste du nombre de territoires par le nombre de joueurs
 			for(int i=0; i<nbJoueurs; i+=1) {//Boucle qui a chaque passage attribu au joueur i un territoire aleatoire
 				int y= GenererNbAleatoire(0, ListeTerritoiresRestants.size()-1);
 				ListeJoueur.get(i).TerritoiresJoueur.add(ListeTerritoiresRestants.get(y));
@@ -217,7 +210,7 @@ public class MainRisk {
 
 			}
 		int i=1;
-		//Si le reste de la division n'est pas nul alors il reste deux territoires � attribuer
+		//Si le reste de la division n'est pas nul alors il reste deux territoires à attribuer
 		while(reste!=0) {
 			ListeJoueur.get(ListeJoueur.size()-i).TerritoiresJoueur.add(ListeTerritoiresRestants.get(reste-1));
 			ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(reste-1));
@@ -227,16 +220,16 @@ public class MainRisk {
 	
 	}
 
-	//Fonction qui permet � chaque joueur d'ajouter ses armees aux territoires pendant la phase d'initialisation de la partie
+	//Fonction qui permet à chaque joueur d'ajouter ses armees aux territoires pendant la phase d'initialisation de la partie
 	public void InitialisationTerritoiresArmees() {
 		
 	}
-	//Placement des arm�es
+	//Placement des armées
 	public static void DistributionArmees(ArrayList<Joueur> ListeJoueur) {
 		int nbJoueurs = ListeJoueur.size();
 		int nbArmees;
 		
-		//On initialise la varriable nombre d'armees � distribuer � chaque joueurs en fonction du nombre de joueurs
+		//On initialise la varriable nombre d'armees à distribuer à chaque joueurs en fonction du nombre de joueurs
 		switch(nbJoueurs) {
 		case(2):
 			nbArmees=40;
@@ -256,7 +249,7 @@ public class MainRisk {
 		}
 		
 		
-		//Tour � tour le joueur en question selectionne chaqu'un de ses territoires et y ajoute les armees qu'il veut (il est obligatoire d'avoir au moins 1 armee par territoire
+		//Tour à tour le joueur en question selectionne chaqu'un de ses territoires et y ajoute les armees qu'il veut (il est obligatoire d'avoir au moins 1 armee par territoire
 		//et il faut placer le nombre d'armees qu'on a pour chaque joueurs)
 		for(int i=0; i<nbJoueurs; i+=1) {
 			//On selectionne le premier joueur

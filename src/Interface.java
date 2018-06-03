@@ -6,14 +6,19 @@ import javax.swing.JFrame;
 
 public class Interface extends JFrame {
 	private static final long serialVersionUID = 1L;
+	Panneau PanneauPrincipal;
+	boolean PanneauPrincipalAffiche;
 	ArrayList<Joueur> ListeJoueurs;
+	ArrayList<Territoire> ListeTerritoires;
+	int NumJoueur;
 	int NumJoueurInitialisation;
 	PanneauAjoutArmee PanneauAjoutArmee;
 	ArrayList<BoutonRond> ListeBoutonsInitialisation;
 	
 	// Initialisation de la carte
 	public Interface(ArrayList<Joueur> ListeJoueurs) {
-		// Création de la fenetre
+		// CrÃ©ation de la fenetre
+		this.ListeJoueurs=ListeJoueurs;
 		this.setTitle("Risk");
 		this.setSize(1920, 1080);
 		this.setLocationRelativeTo(null);
@@ -22,6 +27,7 @@ public class Interface extends JFrame {
 		PanneauImage Image = new PanneauImage(); // On ajoute l'image en fond
 		this.setContentPane(Image);
 		this.setVisible(true);
+		this.PanneauPrincipalAffiche=false;
 		this.ListeJoueurs = ListeJoueurs;
 	}
 	
@@ -68,7 +74,7 @@ public class Interface extends JFrame {
 			
 	}
 	
-	// Action réalisée quand on clique sur le bouton supprimer Soldat
+	// Action rÃ©alisÃ©e quand on clique sur le bouton supprimer Soldat
 				public class BoutonSupprimerSoldat implements ActionListener{
 					 public void actionPerformed(ActionEvent e) {
 						  PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.remove(0);
@@ -82,10 +88,10 @@ public class Interface extends JFrame {
 						  Update();
 					 }
 		}
-			// Action réalisée quand on clique sur le bouton ajouter Soldat
+			// Action rÃ©alisÃ©e quand on clique sur le bouton ajouter Soldat
 				public class BoutonAjouterSoldat implements ActionListener{
 					public void actionPerformed(ActionEvent e) {
-						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.add(new Armée("Soldat"));
+						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.add(new ArmÃ©e("Soldat"));
 						PanneauAjoutArmee.NbSoldats.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.size()));
 							if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.size()!=0) {
 								PanneauAjoutArmee.SupprimerSoldat.setEnabled(true);
@@ -96,7 +102,7 @@ public class Interface extends JFrame {
 					Update();
 					}	 
 				}
-			// Action réalisée quand on clique sur le bouton supprimer Cavalier
+			// Action rÃ©alisÃ©e quand on clique sur le bouton supprimer Cavalier
 				public class BoutonSupprimerCavalier implements ActionListener{
 					 public void actionPerformed(ActionEvent e) {
 						 PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.remove(0);
@@ -113,7 +119,7 @@ public class Interface extends JFrame {
 			//Action realisee quand on clique sur le bouton ajouter Cavalier
 				public class BoutonAjouterCavalier implements ActionListener{
 					public void actionPerformed(ActionEvent e) {
-						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.add(new Armée("Cavalier"));
+						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.add(new ArmÃ©e("Cavalier"));
 						PanneauAjoutArmee.NbCavaliers.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.size()));
 							if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.size()!=0) {
 								PanneauAjoutArmee.SupprimerCavalier.setEnabled(true);
@@ -124,7 +130,7 @@ public class Interface extends JFrame {
 							Update();
 					}	 
 				}
-			//Action réalisée quand on clique sur le bouton supprimer Canon
+			//Action rÃ©alisÃ©e quand on clique sur le bouton supprimer Canon
 				public class BoutonSupprimerCanon implements ActionListener{
 					 public void actionPerformed(ActionEvent e) {
 						 PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.remove(0);
@@ -141,7 +147,7 @@ public class Interface extends JFrame {
 			//Action realisee quand on clique sur le bouton ajouter Canon
 				public class BoutonAjouterCanon implements ActionListener{
 					public void actionPerformed(ActionEvent e) {
-						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.add(new Armée("Canon"));
+						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.add(new ArmÃ©e("Canon"));
 						PanneauAjoutArmee.NbCanons.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.size()));
 							if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.size()!=0) {
 								PanneauAjoutArmee.SupprimerCanon.setEnabled(true);
@@ -153,7 +159,7 @@ public class Interface extends JFrame {
 					}	 
 				}	
 
-			// Action réalisée quand on clique sur le bouton Valider
+			// Action rÃ©alisÃ©e quand on clique sur le bouton Valider
 				public class BoutonFinalisation implements ActionListener{
 				    public void actionPerformed(ActionEvent e) {
 				    	if(NumJoueurInitialisation<ListeJoueurs.size()+1) {
@@ -179,5 +185,39 @@ public class Interface extends JFrame {
 	public void Update() {
 		this.validate();
 	}
+	
+	// Cette fonction permet d'ajouter le panneau principal Ã  la fenetre et de retirer celui deja prÃ©sent
+	public void AjouterPanneauPrincipal(ArrayList<Joueur> ListeJoueurs, ArrayList<Territoire> ListeTerritoires, int NumJoueur) {
+		this.ListeJoueurs=ListeJoueurs;
+		this.ListeTerritoires=ListeTerritoires;
+		this.NumJoueur=NumJoueur;
+		if (PanneauPrincipalAffiche==false) {
+			this.PanneauPrincipal = new Panneau(ListeJoueurs,ListeTerritoires,this.NumJoueur);
+			PanneauPrincipal.getBoutonFinTour().addActionListener(new BoutonFinTourAction());
+			this.getContentPane().add(PanneauPrincipal);
+			PanneauPrincipal.setBounds(0, 0, 1914, 1045);
+			this.validate();
+		}
+		else {
+			this.RetirerPanneauPrincipal();
+			this.PanneauPrincipal = new Panneau(ListeJoueurs,ListeTerritoires,this.NumJoueur);
+			PanneauPrincipal.getBoutonFinTour().addActionListener(new BoutonFinTourAction());
+			this.getContentPane().add(PanneauPrincipal);
+			this.validate();
+		}
+		PanneauPrincipalAffiche=true;
+	}
+	
+	public void RetirerPanneauPrincipal() {
+		this.getContentPane().remove(PanneauPrincipal);
+	}
+	
+	private class BoutonFinTourAction implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+	    	AjouterPanneauPrincipal(ListeJoueurs, ListeTerritoires, (NumJoueur+1)%ListeJoueurs.size());
+	    }
+	}
+	
+	
 }
 
