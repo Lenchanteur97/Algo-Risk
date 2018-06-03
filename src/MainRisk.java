@@ -1,6 +1,3 @@
-
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.util.ArrayList;
 
 public class MainRisk {
@@ -57,10 +54,9 @@ public class MainRisk {
 				
 		//Test PanneauAjoutArmée
 				int NumJoueurInitialisation = 0;
+				// On initialise tous les territoires et quand tout est initialis�, le jeu se lance
 				fenetre.AfficherPanneauAjoutArmee(NumJoueurInitialisation);
-					// Début du jeu
-				int NumJoueur = 0;
-				fenetre.AjouterPanneauPrincipal(ListeJoueurs, ListeTerritoires, NumJoueur);
+				
 	}
 							
 	
