@@ -55,22 +55,16 @@ public class MainRisk {
 					System.out.println(J.CouleurToString());
 				}
 
-		//Test PanneauAjoutArmée
+				//Test PanneauAjoutArmée
 
 				AffichagePanneauxAjoutArmees(ListeJoueurs, fenetre);
 
 				
-					
-					// Ajout de la carte et de la légende des joueurs dans la fenetre de jeu
-					Panneau Panneau = new Panneau(ListeJoueurs,ListeTerritoires);
-					fenetre.getContentPane().add(Panneau,BorderLayout.CENTER);
-					fenetre.validate();
-					//Placement des armees sur les territoires par les joueurs
-					Panneau.AjouterNomJoueur(ListeJoueurs.get(0));
-					fenetre.getContentPane().repaint();
-					fenetre.validate();
+
 				
-	
+				// Début du jeu
+				int NumJoueur = 0;
+				fenetre.AjouterPanneauPrincipal(ListeJoueurs, ListeTerritoires, NumJoueur);
 	}
 							
 	
