@@ -1,10 +1,16 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
 public class Interface extends JFrame {
 	private static final long serialVersionUID = 1L;
-
+	ArrayList<Joueur> ListeJoueurs;
+	int NumJoueurInitialisation;
+	PanneauAjoutArmee PanneauAjoutArmee;
+	ArrayList<BoutonRond> ListeBoutonsInitialisation;
+	
 	// Initialisation de la carte
 	public Interface(ArrayList<Joueur> ListeJoueurs) {
 		// Création de la fenetre
@@ -16,6 +22,162 @@ public class Interface extends JFrame {
 		PanneauImage Image = new PanneauImage(); // On ajoute l'image en fond
 		this.setContentPane(Image);
 		this.setVisible(true);
+		this.ListeJoueurs = ListeJoueurs;
+	}
+	
+	public void AfficherPanneauAjoutArmee(int NumJoueurInitialisation) {
+		this.NumJoueurInitialisation = NumJoueurInitialisation;
+		if(NumJoueurInitialisation==0) {
+			this.PanneauAjoutArmee = new PanneauAjoutArmee(ListeJoueurs.get(NumJoueurInitialisation));
+			PanneauAjoutArmee.getAjouterSoldat().addActionListener(new BoutonAjouterSoldat());
+			PanneauAjoutArmee.getAjouterCavalier().addActionListener(new BoutonAjouterCavalier());
+			PanneauAjoutArmee.getAjouterCanon().addActionListener(new BoutonAjouterCanon());
+			PanneauAjoutArmee.getSupprimerSoldat().addActionListener(new BoutonSupprimerSoldat());
+			PanneauAjoutArmee.getSupprimerCavalier().addActionListener(new BoutonSupprimerCavalier());
+			PanneauAjoutArmee.getSupprimerCanon().addActionListener(new BoutonSupprimerCanon());
+			PanneauAjoutArmee.getBoutonFinalisation().addActionListener(new BoutonFinalisation());
+			this.ListeBoutonsInitialisation=PanneauAjoutArmee.getListeBoutonsInitialisation();
+			for(BoutonRond BR : PanneauAjoutArmee.ListeBoutonsInitialisation) {
+				BR.addActionListener(new BoutonRondInitialisationAction());
+			}
+			this.getContentPane().add(PanneauAjoutArmee);
+			PanneauAjoutArmee.setBounds(0,0,1914,1045);
+			this.validate();
+		}
+		else if(NumJoueurInitialisation>0 && NumJoueurInitialisation!=ListeJoueurs.size()) {
+			this.getContentPane().remove(PanneauAjoutArmee);
+			this.PanneauAjoutArmee = new PanneauAjoutArmee(ListeJoueurs.get(NumJoueurInitialisation));
+			PanneauAjoutArmee.getAjouterSoldat().addActionListener(new BoutonAjouterSoldat());
+			PanneauAjoutArmee.getAjouterCavalier().addActionListener(new BoutonAjouterCavalier());
+			PanneauAjoutArmee.getAjouterCanon().addActionListener(new BoutonAjouterCanon());
+			PanneauAjoutArmee.getSupprimerSoldat().addActionListener(new BoutonSupprimerSoldat());
+			PanneauAjoutArmee.getSupprimerCavalier().addActionListener(new BoutonSupprimerCavalier());
+			PanneauAjoutArmee.getSupprimerCanon().addActionListener(new BoutonSupprimerCanon());
+			PanneauAjoutArmee.getBoutonFinalisation().addActionListener(new BoutonFinalisation());
+			this.ListeBoutonsInitialisation=PanneauAjoutArmee.getListeBoutonsInitialisation();
+			for(BoutonRond BR : PanneauAjoutArmee.ListeBoutonsInitialisation) {
+				BR.addActionListener(new BoutonRondInitialisationAction());
+			}
+			this.getContentPane().add(PanneauAjoutArmee);
+			this.validate();
+		}
+		else if(NumJoueurInitialisation==ListeJoueurs.size()) {
+			this.getContentPane().remove(PanneauAjoutArmee);
+			this.validate();
+		}
+			
+	}
+	
+	// Action réalisée quand on clique sur le bouton supprimer Soldat
+				public class BoutonSupprimerSoldat implements ActionListener{
+					 public void actionPerformed(ActionEvent e) {
+						  PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.remove(0);
+						  PanneauAjoutArmee.NbSoldats.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.size()));
+						  if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.size()!=0) {
+							  PanneauAjoutArmee.SupprimerSoldat.setEnabled(true);
+							}
+							else if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.size()==0) {
+								PanneauAjoutArmee.SupprimerSoldat.setEnabled(false);
+							}
+						  Update();
+					 }
+		}
+			// Action réalisée quand on clique sur le bouton ajouter Soldat
+				public class BoutonAjouterSoldat implements ActionListener{
+					public void actionPerformed(ActionEvent e) {
+						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.add(new Armée("Soldat"));
+						PanneauAjoutArmee.NbSoldats.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.size()));
+							if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.size()!=0) {
+								PanneauAjoutArmee.SupprimerSoldat.setEnabled(true);
+							}
+							else if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.size()==0) {
+								PanneauAjoutArmee.SupprimerSoldat.setEnabled(false);
+							}
+					Update();
+					}	 
+				}
+			// Action réalisée quand on clique sur le bouton supprimer Cavalier
+				public class BoutonSupprimerCavalier implements ActionListener{
+					 public void actionPerformed(ActionEvent e) {
+						 PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.remove(0);
+						 PanneauAjoutArmee.NbCavaliers.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.size()));
+						  if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.size()!=0) {
+							  PanneauAjoutArmee.SupprimerCavalier.setEnabled(true);
+							}
+							else if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.size()==0) {
+								PanneauAjoutArmee.SupprimerCavalier.setEnabled(false);
+							}
+					 Update();
+					 }
+		}
+			//Action realisee quand on clique sur le bouton ajouter Cavalier
+				public class BoutonAjouterCavalier implements ActionListener{
+					public void actionPerformed(ActionEvent e) {
+						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.add(new Armée("Cavalier"));
+						PanneauAjoutArmee.NbCavaliers.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.size()));
+							if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.size()!=0) {
+								PanneauAjoutArmee.SupprimerCavalier.setEnabled(true);
+							}
+							else if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.size()==0) {
+								PanneauAjoutArmee.SupprimerCavalier.setEnabled(false);
+							}
+							Update();
+					}	 
+				}
+			//Action réalisée quand on clique sur le bouton supprimer Canon
+				public class BoutonSupprimerCanon implements ActionListener{
+					 public void actionPerformed(ActionEvent e) {
+						 PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.remove(0);
+						 PanneauAjoutArmee.NbCanons.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.size()));
+						  if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.size()!=0) {
+							  PanneauAjoutArmee.SupprimerCanon.setEnabled(true);
+							}
+							else if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.size()==0) {
+								PanneauAjoutArmee.SupprimerCanon.setEnabled(false);
+							}
+					 Update();
+					 }
+		}
+			//Action realisee quand on clique sur le bouton ajouter Canon
+				public class BoutonAjouterCanon implements ActionListener{
+					public void actionPerformed(ActionEvent e) {
+						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.add(new Armée("Canon"));
+						PanneauAjoutArmee.NbCanons.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.size()));
+							if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.size()!=0) {
+								PanneauAjoutArmee.SupprimerCanon.setEnabled(true);
+							}
+							else if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.size()==0) {
+								PanneauAjoutArmee.SupprimerCanon.setEnabled(false);
+							}
+					Update();		
+					}	 
+				}	
+
+			// Action réalisée quand on clique sur le bouton Valider
+				public class BoutonFinalisation implements ActionListener{
+				    public void actionPerformed(ActionEvent e) {
+				    	if(NumJoueurInitialisation<ListeJoueurs.size()+1) {
+				    		AfficherPanneauAjoutArmee(NumJoueurInitialisation+1);
+				    	}
+				    }
+				}
+					
+					//Action realisee quand on clique sur un bouton rond
+					public class BoutonRondInitialisationAction implements ActionListener{
+						public void actionPerformed(ActionEvent e) {
+							PanneauAjoutArmee.indice = 0;
+							for(int i=0; i<ListeBoutonsInitialisation.size(); i+=1) {
+								if (e.getSource()==ListeBoutonsInitialisation.get(i)) {
+									PanneauAjoutArmee.indice=i;
+								}
+							}
+							PanneauAjoutArmee.AffichageContenuTerritoire(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice));
+							Update();
+						}
+				}
+
+	public void Update() {
+		this.validate();
 	}
 }
 

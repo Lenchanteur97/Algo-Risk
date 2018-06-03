@@ -56,21 +56,18 @@ public class MainRisk {
 				}
 
 		//Test PanneauAjoutArmée
-
-				AffichagePanneauxAjoutArmees(ListeJoueurs, fenetre);
-
-				
-					
+				int NumJoueurInitialisation = 0;
+				fenetre.AfficherPanneauAjoutArmee(NumJoueurInitialisation);
 					// Ajout de la carte et de la légende des joueurs dans la fenetre de jeu
-					Panneau Panneau = new Panneau(ListeJoueurs,ListeTerritoires);
-					fenetre.getContentPane().add(Panneau,BorderLayout.CENTER);
-					fenetre.validate();
+					//Panneau Panneau = new Panneau(ListeJoueurs,ListeTerritoires);
+					//fenetre.getContentPane().add(Panneau,BorderLayout.CENTER);
+					//fenetre.validate();
 					//Placement des armees sur les territoires par les joueurs
-					Panneau.AjouterNomJoueur(ListeJoueurs.get(0));
-					fenetre.getContentPane().repaint();
-					fenetre.validate();
+					//Panneau.AjouterNomJoueur(ListeJoueurs.get(0));
+					//fenetre.getContentPane().repaint();
+					//fenetre.validate();
 				
-	
+
 	}
 							
 	
@@ -230,36 +227,12 @@ public class MainRisk {
 	
 	}
 
-	//Fonction panneaux d'ajout d'armees
-	public static void AffichagePanneauxAjoutArmees(ArrayList<Joueur> ListeJoueur, Interface fenetre) {
-		//On cree une liste qui contiendra les panneaux d'ajout d'armees de chaque joueur
-		ArrayList<PanneauAjoutArmee> ListePanneauAjoutArmee = new ArrayList<PanneauAjoutArmee>();
-		for(Joueur J : ListeJoueur) {
-			ListePanneauAjoutArmee.add(new PanneauAjoutArmee(J));
-		}
+	//Fonction qui permet à chaque joueur d'ajouter ses armees aux territoires pendant la phase d'initialisation de la partie
+	public void InitialisationTerritoiresArmees() {
 		
-		//Boucle qui passe d'un joueur à un autre lors que celui ci finalise ses ajout d'armees
-		int i=0;
-			while(i<=ListeJoueur.size()){
-				if(i==ListeJoueur.size() && ((PanneauAjoutArmee) ListePanneauAjoutArmee.get(i-1)).getFinalisation() == true){//Quand le dernier joueur a valider son ajout d'armee
-					fenetre.remove((Component) ListePanneauAjoutArmee.get(i-1));
-					break;
-				}
-				else if (i!=0 && i!=ListeJoueur.size()){//Supprime à partir du 2eme joueur le panneau du joueur precedent
-					fenetre.remove((Component) ListePanneauAjoutArmee.get(i-1));
-				}
-				if(i<ListeJoueur.size()) {//Cree un panneau au joueur i
-					fenetre.getContentPane().add((Component) ListePanneauAjoutArmee.get(i),BorderLayout.CENTER);
-					fenetre.validate();
-				}
-				if(((PanneauAjoutArmee) ListePanneauAjoutArmee.get(i)).getFinalisation() == true) {//Incremente i si le joueur valide son ajout d'armee
-					i+=1;							
-				}
-			}
 	}
-	
 	//Placement des armées
-	public static void PlacerArmee(ArrayList<Joueur> ListeJoueur) {
+	public static void DistributionArmees(ArrayList<Joueur> ListeJoueur) {
 		int nbJoueurs = ListeJoueur.size();
 		int nbArmees;
 		
@@ -281,6 +254,7 @@ public class MainRisk {
 			nbArmees=20;
 			break;
 		}
+		
 		
 		//Tour à tour le joueur en question selectionne chaqu'un de ses territoires et y ajoute les armees qu'il veut (il est obligatoire d'avoir au moins 1 armee par territoire
 		//et il faut placer le nombre d'armees qu'on a pour chaque joueurs)
