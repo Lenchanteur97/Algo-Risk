@@ -196,10 +196,6 @@ public class PanneauAjoutArmee extends JPanel {
 	}
 
 //Getter
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	
 	public Joueur getJoueur() {
 		return Joueur;
