@@ -119,7 +119,7 @@ public class PanneauAjoutArmee extends JPanel {
 		ContenuTerritoire = new JPanel();
 		BordureTitreContenuTerritoire = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Il vous reste X armees a placer");
 		ContenuTerritoire.setLayout(new GridLayout(3,1));
-		ContenuTerritoire.setBackground(new Color(0,0,0,0));
+		ContenuTerritoire.setBackground(new Color(255,255,255,255));
 		ContenuTerritoire.setBorder(BordureTitreContenuTerritoire);
 		
 		
