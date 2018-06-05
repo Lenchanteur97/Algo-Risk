@@ -1,7 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 
 public class Interface extends JFrame {
@@ -22,7 +21,8 @@ public class Interface extends JFrame {
 		this.setSize(1920, 1080);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
+		this.setResizable(true);
+		this.setAlwaysOnTop(true);
 		PanneauImage Image = new PanneauImage(); // On ajoute l'image en fond
 		this.setContentPane(Image);
 		this.setVisible(true);
@@ -65,11 +65,8 @@ public class Interface extends JFrame {
 			}
 			this.getContentPane().add(PanneauAjoutArmee);
 			this.validate();
-		}
-		
-			
+		}		
 	}
-	
 	// Action réalisée quand on clique sur le bouton supprimer Soldat
 				public class BoutonSupprimerSoldat implements ActionListener{
 					 public void actionPerformed(ActionEvent e) {
@@ -95,7 +92,7 @@ public class Interface extends JFrame {
 							else if(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.size()==0) {
 								PanneauAjoutArmee.SupprimerSoldat.setEnabled(false);
 							}
-					
+						Update();
 					}	 
 				}
 			// Action réalisée quand on clique sur le bouton supprimer Cavalier
@@ -179,6 +176,7 @@ public class Interface extends JFrame {
 								}
 							}
 							PanneauAjoutArmee.AffichageContenuTerritoire(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice));
+							getContentPane().validate();
 							Update();
 						}
 				}
