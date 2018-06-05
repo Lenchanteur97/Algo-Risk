@@ -18,7 +18,6 @@ public class Interface extends JFrame {
 	// Initialisation de la carte
 	public Interface(ArrayList<Joueur> ListeJoueurs) {
 		// Création de la fenetre
-		this.ListeJoueurs=ListeJoueurs;
 		this.setTitle("Risk");
 		this.setSize(1920, 1080);
 		this.setLocationRelativeTo(null);

@@ -220,45 +220,15 @@ public class MainRisk {
 	public void InitialisationTerritoiresArmees() {
 		
 	}
-	//Placement des armées
-	public static void DistributionArmees(ArrayList<Joueur> ListeJoueur) {
-		int nbJoueurs = ListeJoueur.size();
-		int nbArmees;
-		
-		//On initialise la varriable nombre d'armees à distribuer à chaque joueurs en fonction du nombre de joueurs
-		switch(nbJoueurs) {
-		case(2):
-			nbArmees=40;
-			break;
-		case(3):
-			nbArmees=35;
-			break;
-		case(4):
-			nbArmees=30;
-			break;
-		case(5):
-			nbArmees=25;
-			break;
-		case(6):
-			nbArmees=20;
-			break;
-		}
-		
-		
-		//Tour à tour le joueur en question selectionne chaqu'un de ses territoires et y ajoute les armees qu'il veut (il est obligatoire d'avoir au moins 1 armee par territoire
-		//et il faut placer le nombre d'armees qu'on a pour chaque joueurs)
-		for(int i=0; i<nbJoueurs; i+=1) {
-			//On selectionne le premier joueur
-			//On affiche la carte avec des points seulement dans ses territoires
-			//Quand il clique sur un de ses territoires on lui affiche en bas les 3 images d'armees possible a placer et le nombre d'armee qu'il lui reste a placer
-		}
+	
 			
-	}
+	
 		
 	//Fonction qui genere un nombre aleatoire
 	public static int GenererNbAleatoire(int a, int b) {
 		int nombreAleatoire = a + (int)(Math.random() * ((b - a) + 1));
 		return nombreAleatoire;
 	}
+	
 	
 }

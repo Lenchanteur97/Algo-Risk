@@ -1,0 +1,22 @@
+public static void DistributionArmees(ArrayList<Joueur> ListeJoueur) {
+		int nbJoueurs = ListeJoueur.size();
+		//On initialise la varriable nombre d'armees à distribuer à chaque joueurs en fonction du nombre de joueurs
+		if(nbJoueurs==2) {
+				PanneauAjoutArmee.setNbArmees(40);
+			}
+			
+			break;
+		[case(3):
+			nbArmees=35;
+			break;
+		case(4):
+			nbArmees=30;
+			break;
+		case(5):
+			nbArmees=25;
+			break;
+		case(6):
+			nbArmees=20;
+			break;
+		}
+		}

@@ -11,11 +11,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 
 public class PanneauAjoutArmee extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -39,7 +41,8 @@ public class PanneauAjoutArmee extends JPanel {
 	JButton AjouterCanon;
 	JLabel NbCanons;
 	JButton BoutonFinalisation;
-
+	TitledBorder BordureTitreContenuTerritoire;
+	int nbArmees ;
 
 	public PanneauAjoutArmee(Joueur J) {
 		super();
@@ -51,6 +54,7 @@ public class PanneauAjoutArmee extends JPanel {
 		this.AjouterSoldat = new JButton("+");
 		this.AjouterCavalier = new JButton("+");
 		this.AjouterCanon = new JButton("+");
+		
 		
 		//On charge les images de soldat cavalier et canon
 		this.image_soldat = new ImageIcon(getClass().getResource("icone-soldat.png"));
@@ -107,14 +111,16 @@ public class PanneauAjoutArmee extends JPanel {
 		}
 		VerifAffichageContenuTerritoire = false;
 		this.add(ContenuTerritoire);	
-		ContenuTerritoire.setBounds(0, 590, 400, 450);
+		ContenuTerritoire.setBounds(0, 585, 410, 450);
 	}
 		
 
 	public JPanel CreerContenuTerritoire() {
 		ContenuTerritoire = new JPanel();
+		BordureTitreContenuTerritoire = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Il vous reste X armees a placer");
 		ContenuTerritoire.setLayout(new GridLayout(3,1));
 		ContenuTerritoire.setBackground(new Color(0,0,0,0));
+		ContenuTerritoire.setBorder(BordureTitreContenuTerritoire);
 		
 		
 			JPanel PanneauAjoutSoldat = new JPanel();
@@ -268,4 +274,19 @@ public class PanneauAjoutArmee extends JPanel {
 	public ArrayList<BoutonRond> getListeBoutonsInitialisation(){
 		return ListeBoutonsInitialisation;
 	}
+
+	public int getNbArmees() {
+		return nbArmees;
+	}
+
+
+	public void setNbArmees(int nbArmees) {
+		this.nbArmees = nbArmees;
+	}
+
+
+
+
+
+
 }
