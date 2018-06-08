@@ -6,14 +6,19 @@ public class Joueur {
 	public int nbRegions;
 	public Missions Mission;
 	public ArrayList<Territoire> TerritoiresJoueur;
+	public ArrayList<Region> RegionsJoueur;
 	public Color couleur;
 	public boolean Elimine;
+	public int nbConquetes;
+	
+	
 	
 	public Joueur(String acronyme, Color couleur) {
 		this.acronyme = acronyme;
 		this.couleur = couleur;
 		this.Elimine=false;
 		this.TerritoiresJoueur = new ArrayList<Territoire>();
+		this.RegionsJoueur = new ArrayList<Region>();
 	}
 	
 	//Attribution une mission à chaque joueur

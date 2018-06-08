@@ -55,20 +55,12 @@ public class MainRisk {
 		//Test PanneauAjoutArmÃ©e
 				int NumJoueurInitialisation = 0;
 				// On initialise tous les territoires et quand tout est initialisé, le jeu se lance
-				fenetre.AfficherPanneauAjoutArmee(NumJoueurInitialisation);
+				fenetre.AfficherPanneauAjoutArmee(NumJoueurInitialisation, fenetre.CalculArmeeDistribution());
+				
+				
 				
 	}
 							
-	
-				
-				
-				
-
-		
-
-	
-	
-	
 	
 
 	//Initialisation des missions en fonction du nombre de joueurs
@@ -215,14 +207,35 @@ public class MainRisk {
 		}
 	
 	}
-
-	//Fonction qui permet Ã  chaque joueur d'ajouter ses armees aux territoires pendant la phase d'initialisation de la partie
-	public void InitialisationTerritoiresArmees() {
-		
-	}
 	
-			
-	
+	//Fonction qui attribu à un joueur une region s'il en controle tous les territoires
+	public void AtttributerRegion(ArrayList<Region>ListeRegions) {
+		boolean VerificationRegion = true;
+		//On prend chaque region pour parcourir ses territoires
+			for(Region R: ListeRegions) {
+				//Pour chaque territoire d'une region on verifie si son possesseur est différent du suivant
+				for(int i=0; i<R.Territoires.size()-1;i+=1) {
+					
+					//Si oui on affecte false a notre verification
+					if(R.Territoires.get(i).Joueur!=R.Territoires.get(i+1).Joueur) {
+						VerificationRegion = false;
+					}
+				}
+				//Si la verification est validee a la fin de la liste des territoires on recupere le joueur et on lui ajoutons la region validee dans sa liste regions
+				Joueur Joueur = R.Territoires.get(0).Joueur;
+				if(VerificationRegion == true) {
+					Joueur.RegionsJoueur.add(R);
+				}
+				//Si la verification n'est pas validee alors le joueur n'a pas tous les territoires de la region
+				for(int i=0; i<Joueur.RegionsJoueur.size(); i+=1) {
+					//Si en plus le joueur dans sa liste region a toujour la region alors on la supprime
+					if(VerificationRegion == false && Joueur.RegionsJoueur.get(i)==R) {
+						Joueur.RegionsJoueur.remove(i);
+					}
+				}
+					
+			}
+		}
 		
 	//Fonction qui genere un nombre aleatoire
 	public static int GenererNbAleatoire(int a, int b) {
