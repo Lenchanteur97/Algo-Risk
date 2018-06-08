@@ -7,9 +7,10 @@ public class Armée {
 	public final int PriorDef;
 	public final int PriorAtt;
 	public int nbDeplacement;
+	public boolean Detruit;
 	
 	public Armée(String type) {
-
+		this.Detruit=false;
 		this.Type = type;
 
 		if(type == "Soldat") {
@@ -45,8 +46,12 @@ public class Armée {
 			this.nbDeplacement = 0;
 			System.out.println("Cette armée n'existe pas, veuillez utiliser une armée de ces choix 'Soldat', 'Cavalier' ou 'Canon'");
 		}
-		
 	}
+
+	public void setDetruit(boolean b) {
+		this.Detruit=b;
+	}
+	
 	
 	
 }

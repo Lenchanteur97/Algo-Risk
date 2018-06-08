@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
@@ -13,23 +15,22 @@ public class Interface extends JFrame {
 	int NumJoueurInitialisation;
 	PanneauAjoutArmee PanneauAjoutArmee;
 	ArrayList<BoutonRond> ListeBoutonsInitialisation;
+
 	
 	// Initialisation de la carte
-	public Interface(ArrayList<Joueur> ListeJoueurs) {
+	public Interface(ArrayList<Joueur> ListeJoueurs, ArrayList<Territoire> ListeTerritoires) {
 		// Création de la fenetre
 		this.setTitle("Risk");
 		this.setSize(1920, 1080);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
-<<<<<<< HEAD
-		this.setAlwaysOnTop(false);
-=======
->>>>>>> 2f03a3464f9b92dc30736090075af33188934c15
-		PanneauImage Image = new PanneauImage(); // On ajoute l'image en fond
-		this.setContentPane(Image);
+		PanneauImage Image = new PanneauImage(); 
+		this.getContentPane().setLayout(null);
+		this.setContentPane(Image); // On ajoute l'image en fond
 		this.setVisible(true);
 		this.PanneauPrincipalAffiche=false;
+		this.ListeTerritoires = ListeTerritoires;
 		this.ListeJoueurs = ListeJoueurs;
 	}
 	
@@ -68,7 +69,7 @@ public class Interface extends JFrame {
 			}
 			this.getContentPane().add(PanneauAjoutArmee);
 			this.validate();
-		}		
+		}
 	}
 	// Action réalisée quand on clique sur le bouton supprimer Soldat
 				public class BoutonSupprimerSoldat implements ActionListener{
@@ -172,7 +173,6 @@ public class Interface extends JFrame {
 			//Action realisee quand on clique sur un bouton rond
 				public class BoutonRondInitialisationAction implements ActionListener{
 						public void actionPerformed(ActionEvent e) {
-							PanneauAjoutArmee.indice = 0;
 							for(int i=0; i<ListeBoutonsInitialisation.size(); i+=1) {
 								if (e.getSource()==ListeBoutonsInitialisation.get(i)) {
 									PanneauAjoutArmee.indice=i;
@@ -193,8 +193,9 @@ public class Interface extends JFrame {
 		this.ListeJoueurs=ListeJoueurs;
 		this.ListeTerritoires=ListeTerritoires;
 		this.NumJoueur=NumJoueur;
+		
 		if (PanneauPrincipalAffiche==false) {
-			this.PanneauPrincipal = new Panneau(ListeJoueurs,ListeTerritoires,this.NumJoueur);
+			this.PanneauPrincipal = new Panneau(ListeJoueurs,ListeTerritoires,this.NumJoueur,this);
 			PanneauPrincipal.getBoutonFinTour().addActionListener(new BoutonFinTourAction());
 			this.getContentPane().add(PanneauPrincipal);
 			PanneauPrincipal.setBounds(0, 0, 1914, 1045);
@@ -202,7 +203,7 @@ public class Interface extends JFrame {
 		}
 		else {
 			this.RetirerPanneauPrincipal();
-			this.PanneauPrincipal = new Panneau(ListeJoueurs,ListeTerritoires,this.NumJoueur);
+			this.PanneauPrincipal = new Panneau(ListeJoueurs,ListeTerritoires,this.NumJoueur,this);
 			PanneauPrincipal.getBoutonFinTour().addActionListener(new BoutonFinTourAction());
 			this.getContentPane().add(PanneauPrincipal);
 			this.validate();
@@ -213,6 +214,7 @@ public class Interface extends JFrame {
 	public void RetirerPanneauPrincipal() {
 		this.getContentPane().remove(PanneauPrincipal);
 	}
+	
 	
 	private class BoutonFinTourAction implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
