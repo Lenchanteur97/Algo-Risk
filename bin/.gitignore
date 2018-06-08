@@ -61,3 +61,7 @@
 /Interface$BoutonSupprimerCanon.class
 /Interface$BoutonSupprimerCavalier.class
 /Interface$BoutonSupprimerSoldat.class
+/Interface$BoutonAfficherMission.class
+/Interface$BoutonFinalisation$BoutonAfficherMission.class
+/Interface$BoutonFinalisation$BoutonFinTourAction.class
+/Interface$BoutonFinalisation$BoutonRondInitialisationAction.class

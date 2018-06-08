@@ -133,6 +133,7 @@ public class Panneau extends JPanel implements ActionListener {
 		JButton AfficherMission = new JButton("Afficher la mission");
 		AfficherMission.addActionListener(new AfficherMission());
 		AfficherMission.setFont(new Font("Arial", Font.ITALIC, 15));
+		
 		PanneauJoueurEnCours.add(NomJoueur);
 		NomJoueur.setBounds(0, 0, 225, 50);
 		PanneauJoueurEnCours.add(NomJoueur2);

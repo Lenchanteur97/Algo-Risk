@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+
 public class PanneauAjoutArmee extends JPanel {
 	private static final long serialVersionUID = 1L;
 	ArrayList<BoutonRond> ListeBoutonsInitialisation = new ArrayList<BoutonRond>();
@@ -42,9 +43,11 @@ public class PanneauAjoutArmee extends JPanel {
 	JLabel NbCanons;
 	JButton BoutonFinalisation;
 	TitledBorder BordureTitreContenuTerritoire;
-	int nbArmees ;
+	JLabel nbArmeesRestantes ;
+	int nbArmeesDistribuees;
+	JButton AfficherMission;
 
-	public PanneauAjoutArmee(Joueur J) {
+	public PanneauAjoutArmee(Joueur J, int  nbArmeesDistribuees ) {
 		super();
 		this.Joueur = J;
 		this.VerifAffichageContenuTerritoire = true;
@@ -54,6 +57,8 @@ public class PanneauAjoutArmee extends JPanel {
 		this.AjouterSoldat = new JButton("+");
 		this.AjouterCavalier = new JButton("+");
 		this.AjouterCanon = new JButton("+");
+		this.nbArmeesDistribuees = nbArmeesDistribuees;
+		this.nbArmeesRestantes = new JLabel();
 		
 		
 		//On charge les images de soldat cavalier et canon
@@ -76,8 +81,13 @@ public class PanneauAjoutArmee extends JPanel {
 		
 		//Affiche un panneau qui selon le tour affiche le nom du joueur et un bouton pour finaliser son action
 		JPanel PanneauJoueurEnCours = new JPanel();
-		PanneauJoueurEnCours.setLayout(new FlowLayout());
+		PanneauJoueurEnCours.setLayout(null);
 		PanneauJoueurEnCours.setBackground(new Color(0,0,0,0));
+			nbArmeesRestantes = new JLabel("Il vous reste "+ Integer.toString(nbArmeesDistribuees) +" armees a placer");
+			nbArmeesRestantes.setFont(new Font("Arial",Font.BOLD,20));
+			nbArmeesRestantes.setVerticalAlignment(SwingConstants.CENTER);
+			nbArmeesRestantes.setHorizontalAlignment(SwingConstants.CENTER);
+			nbArmeesRestantes.setBackground(new Color(255,255,255,255));
 			JLabel NomJoueur = new JLabel("Placement des armees : ");
 			JLabel NomJoueur2 = new JLabel(J.acronyme);
 			NomJoueur.setFont(new Font("Arial",Font.BOLD,32));
@@ -88,16 +98,26 @@ public class PanneauAjoutArmee extends JPanel {
 			NomJoueur2.setBackground(J.couleur);
 			NomJoueur2.setVerticalAlignment(SwingConstants.CENTER);
 			NomJoueur2.setHorizontalAlignment(SwingConstants.CENTER);
-			NomJoueur2.setPreferredSize(new Dimension(100,50));
 			BoutonFinalisation = new JButton("Finalisation");
 			BoutonFinalisation.setFont(new Font("Arial", Font.BOLD, 20));
 			BoutonFinalisation.setPreferredSize(new Dimension(150,50));
+			BoutonFinalisation.setEnabled(false);
+			AfficherMission = new JButton("Afficher la mission");
+			AfficherMission.setFont(new Font("Arial", Font.ITALIC, 15));
 			
-		PanneauJoueurEnCours.add(NomJoueur);
-		PanneauJoueurEnCours.add(NomJoueur2);
-		PanneauJoueurEnCours.add(BoutonFinalisation);
-		this.add(PanneauJoueurEnCours);
-		PanneauJoueurEnCours.setBounds(800, 0, 650, 60);
+			
+			PanneauJoueurEnCours.add(nbArmeesRestantes);
+			nbArmeesRestantes.setBounds(0,0,300,50);
+			PanneauJoueurEnCours.add(NomJoueur);
+			NomJoueur.setBounds(575, 0, 500, 50);
+			PanneauJoueurEnCours.add(NomJoueur2);
+			NomJoueur2.setBounds(1025, 0, 100, 50);
+			PanneauJoueurEnCours.add(BoutonFinalisation);
+			BoutonFinalisation.setBounds(1150, 0, 150, 50);
+			PanneauJoueurEnCours.add(AfficherMission);
+			AfficherMission.setBounds(1700, 0, 200, 50);
+			this.add(PanneauJoueurEnCours);
+			PanneauJoueurEnCours.setBounds(0, 0, 1900, 60);
 	}
 	
 	
@@ -117,7 +137,7 @@ public class PanneauAjoutArmee extends JPanel {
 
 	public JPanel CreerContenuTerritoire() {
 		ContenuTerritoire = new JPanel();
-		BordureTitreContenuTerritoire = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Il vous reste X armees a placer");
+		BordureTitreContenuTerritoire = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Armees du territoire");
 		ContenuTerritoire.setLayout(new GridLayout(3,1));
 		ContenuTerritoire.setBackground(new Color(255,255,255,255));
 		ContenuTerritoire.setBorder(BordureTitreContenuTerritoire);
@@ -129,9 +149,6 @@ public class PanneauAjoutArmee extends JPanel {
 			PanneauAjoutSoldat.setPreferredSize(new Dimension(400,150));
 				PanneauSoldat PanneauSoldat = new PanneauSoldat();
 				SupprimerSoldat.setFont(new Font("Arial", Font.BOLD, 40));
-				if(Joueur.TerritoiresJoueur.get(indice).ListeSoldat.size()==0) {
-					SupprimerSoldat.setEnabled(false);
-				}
 				AjouterSoldat.setFont(new Font("Arial", Font.BOLD, 25));
 				NbSoldats = new JLabel("", JLabel.CENTER);
 				NbSoldats.setText(Integer.toString(Joueur.TerritoiresJoueur.get(indice).ListeSoldat.size()));
@@ -155,13 +172,12 @@ public class PanneauAjoutArmee extends JPanel {
 			PanneauAjoutSoldat.setPreferredSize(new Dimension(400,150));
 				PanneauCavalier PanneauCavalier = new PanneauCavalier();
 				SupprimerCavalier.setFont(new Font("Arial", Font.BOLD, 40));
-				if(Joueur.TerritoiresJoueur.get(indice).ListeCavalier.size()==0) {
-					SupprimerCavalier.setEnabled(false);
-				}
 				AjouterCavalier.setFont(new Font("Arial", Font.BOLD, 25));
 				NbCavaliers = new JLabel("", JLabel.CENTER);
 				NbCavaliers.setText(Integer.toString(Joueur.TerritoiresJoueur.get(indice).ListeCavalier.size()));
 				NbCavaliers.setFont(new Font("Arial",Font.BOLD,40));
+				NbCavaliers.setBackground(new Color(255,255,255,255));
+				
 				
 				PanneauAjoutCavalier.add(PanneauCavalier);
 				PanneauCavalier.setBounds(0, 0, 170, 145);
@@ -180,13 +196,11 @@ public class PanneauAjoutArmee extends JPanel {
 			PanneauAjoutSoldat.setPreferredSize(new Dimension(400,150));
 				PanneauCanon PanneauCanon = new PanneauCanon();
 				SupprimerCanon.setFont(new Font("Arial", Font.BOLD, 40));
-				if(Joueur.TerritoiresJoueur.get(indice).ListeCanon.size()==0) {
-					SupprimerCanon.setEnabled(false);
-				}
 				AjouterCanon.setFont(new Font("Arial", Font.BOLD, 25));
 				NbCanons = new JLabel("", JLabel.CENTER);
 				NbCanons.setText(Integer.toString(Joueur.TerritoiresJoueur.get(indice).ListeCanon.size()));
 				NbCanons.setFont(new Font("Arial",Font.BOLD,40));
+				NbCanons.setBackground(new Color(255,255,255,255));
 				
 				PanneauAjoutCanon.add(PanneauCanon);
 				PanneauCanon.setBounds(0, 0, 170, 145);
@@ -275,16 +289,10 @@ public class PanneauAjoutArmee extends JPanel {
 		return ListeBoutonsInitialisation;
 	}
 
-	public int getNbArmees() {
-		return nbArmees;
-	}
 
 
-	public void setNbArmees(int nbArmees) {
-		this.nbArmees = nbArmees;
-	}
 
-
+	
 
 
 

@@ -91,3 +91,8 @@
 /PanneauDefaire.class
 /PanneauDefaite.class
 /FenResultAttaque$OKBouton.class
+/Interface$BoutonAfficherMission.class
+/Interface$BoutonFinalisation$BoutonAfficherMission.class
+/Interface$BoutonFinalisation$BoutonFinTourAction.class
+/Interface$BoutonFinalisation$BoutonRondInitialisationAction.class
+
