@@ -332,6 +332,8 @@ public class Interface extends JFrame {
 	    				ListeJoueurs.remove(J);
 	    			}
 	    		}
+	    		//Attribution region joueur qui se trouve DANS LE MAIN
+	    		
 	    		if(ListeJoueurs.size()==1) {
 	    			JOptionPane PopupVictoire = new JOptionPane();
 	    			PopupVictoire.showMessageDialog(null, "Le joueur : "+ListeJoueurs.get(0).acronyme.toString()+" a gagne!!!!", "Victoire", JOptionPane.INFORMATION_MESSAGE);
