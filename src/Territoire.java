@@ -28,6 +28,41 @@ public class Territoire {
 	public void setJoueur(Joueur J) {
 		this.Joueur=J;
 	}
-
 	
+	public boolean TerritoiresAdjacents(Territoire T) {
+		boolean verif;
+		if (this.TerritoiresProches.contains(T)) {
+			verif = true;
+		}
+		else {
+			verif = false;
+		}
+		return verif;
+	}
+	
+	public ArrayList<Armée> UniteAvecDeplacements(String Type) { // Fonction qui retourne une liste contenant les unitées à qui il reste des déplacements
+		ArrayList<Armée> ListeArmeeDeplacement = new ArrayList<Armée>();
+		if (Type=="Soldat") {
+			for (Armée A : this.ListeSoldat) {
+				if (A.nbDeplacement!=0) {
+					ListeArmeeDeplacement.add(A);
+				}
+			}
+		}
+		else if (Type=="Cavalier") {
+			for (Armée A : this.ListeCavalier) {
+				if (A.nbDeplacement!=0) {
+					ListeArmeeDeplacement.add(A);
+				}
+			}
+		}
+		else if (Type=="Canon") {
+			for (Armée A : this.ListeCanon) {
+				if (A.nbDeplacement!=0) {
+					ListeArmeeDeplacement.add(A);
+				}
+			}
+		}
+		return ListeArmeeDeplacement;
+	}
 }

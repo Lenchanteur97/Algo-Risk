@@ -11,7 +11,7 @@ public class MainRisk {
 		
 		
 		// Initialisation de la fentre et de la carte du monde
-		Interface fenetre = new Interface(ListeJoueurs);
+		Interface fenetre = new Interface(ListeJoueurs, ListeTerritoires);
 		
 		// Affichage d'une pop-up rÃ©cupÃ©rant le nombre de joueurs et leurs acronymes et créé les joueurs
 		FenetreNombreJoueur ChoixJoueurs = new FenetreNombreJoueur(fenetre,"Choix du nombre de joueurs",true,ListeJoueurs);
@@ -176,7 +176,6 @@ public class MainRisk {
 			}
 			ListeTerritoires.get(i).PosXBouton=PositionBouton[i][0];
 			ListeTerritoires.get(i).PosYBouton=PositionBouton[i][1];
-			
 		}
 		
 		
@@ -204,6 +203,13 @@ public class MainRisk {
 			ListeTerritoiresRestants.remove(ListeTerritoiresRestants.get(reste-1));
 			i+=1;
 			reste=reste-1;
+		}
+		
+		// On ajoute maintenant le joueur dans les territoires
+		for(Joueur J : ListeJoueur) {
+			for (Territoire T : J.TerritoiresJoueur) {
+				T.setJoueur(J);
+			}
 		}
 	
 	}

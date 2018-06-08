@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -23,17 +25,19 @@ public class Interface extends JFrame {
 
 	
 	// Initialisation de la carte
-	public Interface(ArrayList<Joueur> ListeJoueurs) {
-		// Création de la fenetre
+	public Interface(ArrayList<Joueur> ListeJoueurs, ArrayList<Territoire> ListeTerritoires) {
+		// CrÃ©ation de la fenetre
 		this.setTitle("Risk");
 		this.setSize(1920, 1080);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(true);	
-		PanneauImage Image = new PanneauImage(); // On ajoute l'image en fond
-		this.setContentPane(Image);
+		this.setResizable(true);
+		PanneauImage Image = new PanneauImage(); 
+		this.getContentPane().setLayout(null);
+		this.setContentPane(Image); // On ajoute l'image en fond
 		this.setVisible(true);
 		this.PanneauPrincipalAffiche=false;
+		this.ListeTerritoires = ListeTerritoires;
 		this.ListeJoueurs = ListeJoueurs;
 	}
 	public void AfficherPanneauAjoutArmee(int NumJoueurInitialisation) {
@@ -115,9 +119,9 @@ public class Interface extends JFrame {
 			}
 			this.getContentPane().add(PanneauAjoutArmee);
 			this.validate();
-		}		
+		}
 	}
-	// Action réalisée quand on clique sur le bouton supprimer Soldat
+	// Action rÃ©alisÃ©e quand on clique sur le bouton supprimer Soldat
 	
 	
 	//Action realisee si on appui sur le bouton supprimer soldat
@@ -136,7 +140,7 @@ public class Interface extends JFrame {
 						  Update();
 					 }
 		}
-			// Action réalisée quand on clique sur le bouton ajouter Soldat
+			// Action rÃ©alisÃ©e quand on clique sur le bouton ajouter Soldat
 				
 	public class BoutonAjouterSoldat implements ActionListener{
 					public void actionPerformed(ActionEvent e) {
@@ -144,14 +148,14 @@ public class Interface extends JFrame {
 						//Mise a jour du label qui affiche le nombre d'armees qu'il reste a placer
 						PanneauAjoutArmee.nbArmeesRestantes.setText("Il vous reste "+ Integer.toString(nbArmeesDistribuees) +" armees a placer");
 						//Creation d'un soldat dans la liste soldat du territoire
-						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.add(new Arm�e("Soldat"));
+						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.add(new Armée("Soldat"));
 						//Mise a jour du label qui affichge le nombre de soldats du territoire
 						PanneauAjoutArmee.NbSoldats.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeSoldat.size()));
 						VerificationBoutonsContenuTerritoire();
 						VerificationBoutonFinalisation();
 					}	 
 				}
-			// Action réalisée quand on clique sur le bouton supprimer Cavalier
+			// Action rÃ©alisÃ©e quand on clique sur le bouton supprimer Cavalier
 				
 	public class BoutonSupprimerCavalier implements ActionListener{
 					 public void actionPerformed(ActionEvent e) {
@@ -176,7 +180,7 @@ public class Interface extends JFrame {
 						//Mise a jour du label qui affiche le nombre d'armees qu'il reste a placer
 						PanneauAjoutArmee.nbArmeesRestantes.setText("Il vous reste "+ Integer.toString(nbArmeesDistribuees) +" armees a placer");
 						//Creation d'un cavalier dans la liste soldat du territoire
-						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.add(new Arm�e("Cavalier"));
+						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.add(new Armée("Cavalier"));
 						//Mise a jour du label qui affichge le nombre de cavaliers du territoire
 						PanneauAjoutArmee.NbCavaliers.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCavalier.size()));
 						VerificationBoutonsContenuTerritoire();
@@ -184,7 +188,7 @@ public class Interface extends JFrame {
 							Update();
 					}	 
 				}
-			//Action réalisée quand on clique sur le bouton supprimer Canon
+			//Action rÃ©alisÃ©e quand on clique sur le bouton supprimer Canon
 				
 	public class BoutonSupprimerCanon implements ActionListener{
 					 public void actionPerformed(ActionEvent e) {
@@ -209,7 +213,7 @@ public class Interface extends JFrame {
 						//Mise a jour du label qui affiche le nombre d'armees qu'il reste a placer
 						PanneauAjoutArmee.nbArmeesRestantes.setText("Il vous reste "+ Integer.toString(nbArmeesDistribuees) +" armees a placer");
 						//Creation d'un canon dans la liste soldat du territoire
-						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.add(new Arm�e("Canon"));
+						PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.add(new Armée("Canon"));
 						//Mise a jour du label qui affichge le nombre de canons du territoire
 						PanneauAjoutArmee.NbCanons.setText(Integer.toString(PanneauAjoutArmee.Joueur.TerritoiresJoueur.get(PanneauAjoutArmee.indice).ListeCanon.size()));
 						VerificationBoutonsContenuTerritoire();
@@ -219,7 +223,7 @@ public class Interface extends JFrame {
 				}	
 
 				
-			// Action réalisée quand on clique sur le bouton Valider
+			// Action rÃ©alisÃ©e quand on clique sur le bouton Valider
 				
 	public class BoutonFinalisation implements ActionListener{
 				    public void actionPerformed(ActionEvent e) {
@@ -229,7 +233,7 @@ public class Interface extends JFrame {
 				    		if(NumJoueurInitialisation<ListeJoueurs.size()-1) {
 				    		AfficherPanneauAjoutArmee(NumJoueurInitialisation+1, CalculArmeeDistribution());
 					    	}
-					    	else { // Quand l'initialisation est finie pour tous les joueurs, on d�marre le jeu
+					    	else { // Quand l'initialisation est finie pour tous les joueurs, on démarre le jeu
 					    		RetirerPanneauAjoutArmee();
 					    		AjouterPanneauPrincipal(ListeJoueurs, ListeTerritoires, NumJoueur);
 					    		Update();
@@ -262,8 +266,7 @@ public class Interface extends JFrame {
 				}
 			
 				
-			//Action realisee quand on clique sur un bouton rond
-				
+			//Action realisee quand on clique sur un bouton rond			
 	public class BoutonRondInitialisationAction implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			//Si le premier tour n'est pas passe
@@ -303,7 +306,7 @@ public class Interface extends JFrame {
 	private class BoutonFinTourAction implements ActionListener {
 		@SuppressWarnings("static-access")
 		public void actionPerformed(ActionEvent e) {  
-			//On test si le premier tour est pass� pour afficher les bonnes pages
+			//On test si le premier tour est passé pour afficher les bonnes pages
 	    	if(PremierTourPasse == false) {
 	    		//Si le premier tour n'est pas passe et que c'est au premier joueur de jouer on lui affiche ses pages
 	    		if(NumJoueur==0) {
@@ -375,12 +378,13 @@ public class Interface extends JFrame {
 		this.validate();
 	}
 	
-	// Cette fonction permet d'ajouter le panneau principal à la fenetre et de retirer celui deja présent
+	// Cette fonction permet d'ajouter le panneau principal Ã  la fenetre et de retirer celui deja prÃ©sent
 	public void AjouterPanneauPrincipal(ArrayList<Joueur> ListeJoueurs, ArrayList<Territoire> ListeTerritoires, int NumJoueur) {
 		this.ListeJoueurs=ListeJoueurs;
 		this.ListeTerritoires=ListeTerritoires;
 		this.NumJoueur=NumJoueur;
-			this.PanneauPrincipal = new Panneau(ListeJoueurs,ListeTerritoires,this.NumJoueur);
+		this.PanneauPrincipal = new Panneau(ListeJoueurs,ListeTerritoires,this.NumJoueur,this);
+
 			PanneauPrincipal.getBoutonFinTour().addActionListener(new BoutonFinTourAction());
 			this.getContentPane().add(PanneauPrincipal);
 			PanneauPrincipal.setBounds(0, 0, 1914, 1045);
@@ -389,7 +393,14 @@ public class Interface extends JFrame {
 			PanneauPrincipalAffiche=true;
 		
 		}
-		
+		else {
+			this.RetirerPanneauPrincipal();
+			this.PanneauPrincipal = new Panneau(ListeJoueurs,ListeTerritoires,this.NumJoueur,this);
+			PanneauPrincipal.getBoutonFinTour().addActionListener(new BoutonFinTourAction());
+			this.getContentPane().add(PanneauPrincipal);
+			this.validate();
+		}
+		PanneauPrincipalAffiche=true;
 	}
 	
 	public void RetirerPanneauPrincipal() {
